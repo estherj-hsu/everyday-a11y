@@ -1,0 +1,77 @@
+@use 'variables' as *;
+
+@mixin mask-icon($url) {
+  background-color: currentColor;
+  mask-image: url($url);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  content: '';
+  width: 1em;
+  height: 1em;
+}
+
+button,
+a {
+  &:focus-visible {
+    outline: 2px solid $twilight-violet;
+    outline-offset: 2px;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 0.938rem 0.625rem 1.25rem;
+  border-radius: 1.5rem;
+  border: 3px solid $harbor-blue;
+  font-family: $font-heading;
+  font-weight: 800;
+  line-height: 1;
+  font-size: map-get($type-scale, body);
+  text-decoration: none;
+  color: $harbor-blue;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $harbor-blue;
+    color: white;
+    outline: none;
+    text-decoration: none;
+
+    &::after {
+      transform: translateX(0.25em);
+    }
+  }
+
+  &::after {
+    display: inline-flex;
+    vertical-align: baseline;
+    margin-left: 0.25em;
+    @include mask-icon('/assets/icon-chevron.svg');
+    transition: transform 0.3s ease;
+  }
+}
+
+a {
+  color: $harbor-blue;
+  text-underline-offset: 0.125em;
+  transition: color 0.3s ease;
+
+  &:focus-visible,
+  &:hover {
+    color: $ink-deep;
+    text-decoration: none;
+  }
+
+  &[target='_blank'] {
+    display: inline;
+
+    &::after {
+      display: inline-flex;
+      vertical-align: baseline;
+      margin-left: 0.25em;
+      @include mask-icon('/assets/icon-external.svg');
+    }
+  }
+}

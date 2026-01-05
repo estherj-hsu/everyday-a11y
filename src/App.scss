@@ -1,0 +1,14 @@
+@use './styles/variables' as *;
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: $paper-mist;
+
+  @view-transition {
+    navigation: auto;
+  }
+}

@@ -1,0 +1,193 @@
+@use 'variables' as *;
+
+:root {
+  --font-heading: #{$font-heading};
+  --font-body: #{$font-body};
+  --font-mono: #{$font-mono};
+}
+
+body {
+  font-family: $font-body;
+  line-height: 1.46;
+  color: $ink-deep;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: $font-heading;
+  line-height: 1.2;
+  margin-top: 1lh;
+  margin-bottom: 0.25lh;
+  color: $storm-slate;
+  width: 100%;
+  max-width: $max-content-width;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h1,
+.h1 {
+  font-size: map-get($type-scale, h1);
+  font-weight: 700;
+}
+h2,
+.h2 {
+  font-size: map-get($type-scale, h2);
+  font-weight: 700;
+}
+h3,
+.h3 {
+  font-size: map-get($type-scale, h3);
+  font-weight: 800;
+}
+h4,
+.h4 {
+  font-size: map-get($type-scale, body);
+  font-weight: 800;
+}
+
+p {
+  font-size: map-get($type-scale, body);
+  margin-bottom: 0.5lh;
+  width: 100%;
+  max-width: $max-paragraph-width;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+small,
+.text-small {
+  font-size: map-get($type-scale, small);
+}
+
+ol,
+ul {
+  margin-top: 0.5lh;
+  margin-bottom: 0.5lh;
+  width: 100%;
+  max-width: $max-paragraph-width;
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+li {
+  margin-bottom: 0.25lh;
+
+  &::marker {
+    color: $harbor-blue;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    color: $harbor-blue;
+  }
+}
+
+dl {
+  margin-top: 1lh;
+  margin-bottom: 1lh;
+  width: 100%;
+  max-width: $max-content-width;
+  columns: 2;
+  column-gap: 2rem;
+
+  dt {
+    font-weight: 600;
+    margin-bottom: 0.125lh;
+  }
+
+  dd {
+    margin-bottom: 1lh;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+mark {
+  font-weight: 500;
+
+  // Source: https://pepelsbey.dev/articles/skewed-highlight/
+  --mark-color: #{$golden-yolk};
+  --mark-skew: 0.25em;
+  --mark-height: 0.5em;
+  --mark-overlap: 0.35em;
+
+  margin-inline: calc(var(--mark-overlap) * -1 + 2px);
+  padding-inline: var(--mark-overlap);
+
+  background-color: transparent;
+  background-image: linear-gradient(to bottom right, transparent 50%, var(--mark-color) 50%), linear-gradient(var(--mark-color), var(--mark-color)),
+    linear-gradient(to top left, transparent 50%, var(--mark-color) 50%);
+  background-size: var(--mark-skew) var(--mark-height), calc(100% - var(--mark-skew) * 2 + 1px) var(--mark-height), var(--mark-skew) var(--mark-height);
+  background-position: left 65%, center 65%, right 65%;
+  background-repeat: no-repeat;
+
+  + mark {
+    margin-left: 0.25em;
+  }
+}
+
+code,
+pre {
+  font-family: $font-mono;
+  font-size: map-get($type-scale, small);
+}
+
+code {
+  font-weight: 500;
+
+  p > &,
+  li > & {
+    border-radius: 2px;
+    padding: 0.125em 0.25em;
+    color: $oxide-teal;
+    background-color: $pure-white;
+  }
+}
+
+.logo {
+  color: $berry-ink;
+  transition: color 0.3s ease;
+  text-decoration: none;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.12em;
+    margin-right: 0.05em;
+    border-radius: 0.06em;
+    background-color: $berry-ink;
+    color: $pure-white;
+    line-height: 0.975;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  &:is(a):hover {
+    color: $ink-deep;
+
+    span {
+      background-color: $ink-deep;
+      color: $pure-white;
+    }
+  }
+}

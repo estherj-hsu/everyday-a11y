@@ -1,0 +1,148 @@
+@use '../styles/variables' as *;
+@use '../styles/links' as *;
+
+.accordion {
+  width: 100%;
+  border-top: 1px solid $twilight-violet;
+
+  &:last-child {
+    border-bottom: 1px solid $twilight-violet;
+  }
+
+  // Accordions with native semantics
+  summary {
+    cursor: pointer;
+    padding: 0.5em 0;
+    overflow: visible;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+    }
+  }
+
+  &.accordion--details {
+    &[open] {
+      summary {
+        color: $twilight-violet;
+
+        &::after {
+          transform: rotate(270deg);
+        }
+      }
+
+      .accordion-content {
+        grid-template-rows: 1fr;
+      }
+    }
+
+    summary {
+      font-weight: 800;
+      font-family: $font-heading;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      &:hover {
+        color: $twilight-violet;
+      }
+
+      &::after {
+        display: inline-flex;
+        vertical-align: baseline;
+        margin-left: 0.25em;
+        @include mask-icon('/assets/icon-chevron.svg');
+        transition: transform 0.3s ease;
+        transform: rotate(90deg);
+      }
+
+      &::marker {
+        content: '';
+      }
+    }
+  }
+
+  // Accordions without native semantics
+  &[data-accordion='opened'] {
+    .accordion-header {
+      color: $twilight-violet;
+
+      &::after {
+        transform: rotate(270deg);
+      }
+    }
+
+    .accordion-content {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border: 2px solid transparent;
+
+    &:hover {
+      color: $twilight-violet;
+    }
+
+    &:has(button:focus-visible) {
+      border-color: $twilight-violet;
+    }
+
+    h3 {
+      margin: 0;
+      font-weight: 800;
+      color: inherit;
+    }
+
+    button {
+      background: none;
+      border: none;
+      text-align: left;
+      color: inherit;
+      padding: 0.5em 0;
+
+      &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        cursor: pointer;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &::after {
+      display: inline-flex;
+      vertical-align: baseline;
+      margin-left: 0.25em;
+      @include mask-icon('/assets/icon-chevron.svg');
+      transition: transform 0.3s ease;
+      transform: rotate(90deg);
+    }
+  }
+
+  .accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+
+    .accordion-content-inner {
+      min-height: 0;
+      overflow: hidden;
+
+      > p:last-child {
+        margin-bottom: 0.75em;
+      }
+    }
+  }
+}

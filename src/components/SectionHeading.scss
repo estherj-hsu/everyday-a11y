@@ -1,0 +1,27 @@
+@use '../styles/variables' as *;
+@use '../styles/links' as *;
+
+.section-heading {
+  position: relative;
+  scroll-margin-top: 2rem;
+
+  &.is-active {
+    &::before {
+      opacity: 1;
+      background-color: $harbor-blue;
+    }
+  }
+
+  &::before {
+    display: inline-flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -1.15em;
+    vertical-align: middle;
+    @include mask-icon('/assets/icon-pound.svg');
+    opacity: 0.75;
+    background-color: $fog-silver;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+  }
+}

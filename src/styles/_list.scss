@@ -1,0 +1,57 @@
+@use 'variables' as *;
+@use 'links' as *;
+
+ul {
+  + ul {
+    margin-top: 1lh;
+  }
+
+  &.references {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li {
+      text-indent: -4rem;
+      margin-left: 4rem;
+
+      strong {
+        border-radius: 2px;
+        padding: 0.1em 0.25em;
+        background-color: $berry-ink;
+        color: $paper-mist;
+      }
+    }
+  }
+
+  &.quick-check {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li {
+      position: relative;
+      padding-left: 1.5em;
+
+      &::before {
+        content: '';
+        width: 1em;
+        height: 1em;
+        display: inline-flex;
+        @include mask-icon('/assets/icon-check.svg');
+        background-color: $berry-ink;
+        position: absolute;
+        left: 0.2em;
+        top: 0.25em;
+      }
+
+      strong {
+        color: $ink-deep;
+      }
+    }
+  }
+}

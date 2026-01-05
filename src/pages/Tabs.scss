@@ -1,0 +1,71 @@
+@use '../styles/variables' as *;
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  &.tabs--vertical {
+    flex-direction: row;
+
+    [role='tablist'] {
+      flex-direction: column;
+      padding-bottom: 1rem;
+
+      button {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 0;
+        border-right: 0;
+        border-bottom: 2px solid $twilight-violet;
+      }
+    }
+  }
+
+  [role='tablist'] {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      background-color: $paper-mist;
+      color: $twilight-violet;
+      border: none;
+      text-align: left;
+      line-height: 1;
+      padding: 0.5em 0.75em;
+      border-top-right-radius: 6px;
+      border-top-left-radius: 6px;
+      border-top: 2px solid $twilight-violet;
+      border-left: 2px solid $twilight-violet;
+      border-right: 2px solid $twilight-violet;
+      font-weight: 800;
+      font-family: $font-heading;
+      cursor: pointer;
+
+      &[aria-selected='true'] {
+        background-color: $twilight-violet;
+        color: $paper-mist;
+        border-color: $twilight-violet;
+        pointer-events: none;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $ink-deep;
+        outline-offset: 2px;
+      }
+
+      &:not([aria-selected='true']):focus-visible,
+      &:not([aria-selected='true']):hover {
+        background-color: lighten($twilight-violet, 40%);
+        color: $ink-deep;
+      }
+    }
+  }
+
+  [role='tabpanel'] {
+    padding: 0.75rem;
+    border: 2px solid $twilight-violet;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+}

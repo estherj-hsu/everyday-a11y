@@ -1,0 +1,35 @@
+// Color variables
+$ink-deep: #15212e;
+$harbor-blue: #2f5681;
+$golden-yolk: #fbc531;
+$storm-slate: #4a555f;
+$fog-silver: #b2bec3;
+$paper-mist: #f8f8f8;
+$pure-white: #ffffff;
+$berry-ink: #c34468;
+$twilight-violet: #574b90;
+$oxide-teal: #005f63;
+
+// Typography
+$font-heading: 'Nunito', sans-serif;
+$font-body: 'Inter', sans-serif;
+$font-mono: 'Sono', monospace;
+
+$type-scale: (
+  // 64px
+  h1: 4rem,
+  // 36px
+  h2: 2.25rem,
+  // 24px
+  h3: 1.5rem,
+  // 20px
+  h4: 1.125rem,
+  // 16px
+  body: 1rem,
+  // 14px
+  small: 0.875rem
+);
+
+// Layout
+$max-content-width: 60rem;
+$max-paragraph-width: 48rem;

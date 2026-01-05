@@ -1,0 +1,9 @@
+@use '../styles/variables' as *;
+
+.home {
+  .home-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+dist
+build
+
+# Generated files
+*.min.js
+*.min.css
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+

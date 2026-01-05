@@ -1,0 +1,45 @@
+@use '../styles/variables' as *;
+
+button[data-dialog],
+button.dismiss {
+  background-color: $twilight-violet;
+  color: $paper-mist;
+  border: none;
+  font-weight: 600;
+  font-family: $font-heading;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &-overlay {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($ink-deep, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  &-content {
+    background-color: $paper-mist;
+    padding: 1rem;
+    max-width: 400px;
+  }
+}

@@ -1,0 +1,26 @@
+@use '../styles/variables' as *;
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  opacity: 0;
+  border: 2px solid $harbor-blue;
+  background-color: $paper-mist;
+  transition: opacity 0.3s ease;
+
+  &:focus {
+    opacity: 1;
+  }
+}

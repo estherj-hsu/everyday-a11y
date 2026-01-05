@@ -1,0 +1,63 @@
+@use '../styles/variables' as *;
+
+.nav {
+  max-width: $max-content-width;
+  width: 100%;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 0;
+    max-width: unset;
+    margin-bottom: 2rem;
+
+    .nav-item {
+      font-family: $font-heading;
+      font-size: map-get($type-scale, h4);
+      font-weight: 700;
+      margin: 0;
+
+      &.nav-item--home {
+        font-size: map-get($type-scale, h3);
+        margin-right: auto;
+        font-weight: 800;
+      }
+
+      &.nav-item--link {
+        color: $harbor-blue;
+        position: relative;
+
+        a,
+        span {
+          color: inherit;
+        }
+
+        &:not(:last-child) {
+          &:after {
+            content: '//';
+            color: $fog-silver;
+            margin-left: 1em;
+          }
+        }
+
+        a:hover {
+          color: $ink-deep;
+          text-decoration: underline;
+        }
+      }
+
+      &.nav-item--active {
+        color: $ink-deep;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}

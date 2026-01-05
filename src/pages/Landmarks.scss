@@ -1,0 +1,68 @@
+@use '../styles/variables' as *;
+
+.sample-body {
+  background-color: $paper-mist;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px dashed $fog-silver;
+
+  header {
+    padding: 0.5rem 0.5rem;
+    border: 3px solid $twilight-violet;
+    text-align: center;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    nav {
+      flex-basis: calc(50% - 0.25rem);
+      border: 2px dashed $fog-silver;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.nav-secondary {
+        flex-basis: 100%;
+        order: 2;
+      }
+    }
+
+    form {
+      flex-basis: calc(50% - 0.25rem);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 2px dashed $fog-silver;
+      padding: 0.25rem;
+
+      input {
+        width: 8rem;
+      }
+    }
+  }
+
+  .main {
+    border: 3px solid $berry-ink;
+    padding: 0.5rem;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    section {
+      border: 2px dashed $fog-silver;
+      padding: 0.25rem;
+      margin-top: 1rem;
+    }
+  }
+
+  footer {
+    padding: 0.25rem 0.5rem;
+    border: 3px solid $oxide-teal;
+    text-align: center;
+  }
+}

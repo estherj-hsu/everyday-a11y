@@ -1,0 +1,37 @@
+@use '../styles/variables' as *;
+
+.component-page {
+  a {
+    &.no-outline {
+      outline: none;
+      color: $ink-deep;
+      text-decoration: none;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &.outline-default {
+      // make this to browser default outline style
+      outline: auto;
+
+      &:focus-visible {
+        outline: auto;
+      }
+    }
+
+    &.outline {
+      color: $ink-deep;
+      text-decoration: none;
+      outline: 2px solid $twilight-violet;
+      outline-offset: 2px;
+    }
+
+    &.no-external {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}

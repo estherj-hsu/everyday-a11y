@@ -1,0 +1,124 @@
+@use '../styles/variables' as *;
+
+.code-example {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 1.5rem 0;
+  border: 1px solid $fog-silver;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+  min-width: 100%;
+
+  &:has(.code-example-preview) {
+    .code-example-code {
+      border-right: 1px solid $fog-silver;
+    }
+  }
+
+  &.code-example--preview-equal {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.code-example--preview-narrow {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.code-example-code,
+.code-example-preview {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.code-example-header {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid $fog-silver;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 48px;
+}
+
+.code-example-copy {
+  padding: 0.5em;
+  border: 1px solid $fog-silver;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  font-size: map-get($type-scale, small);
+  font-weight: 600;
+  color: $storm-slate;
+  cursor: pointer;
+  line-height: 1;
+
+  &:hover {
+    background-color: $pure-white;
+    border-color: $twilight-violet;
+    color: $twilight-violet;
+  }
+
+  &:active {
+    background-color: $pure-white;
+  }
+}
+
+.code-example-content {
+  flex: 1;
+  overflow-x: auto;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  background-color: $pure-white;
+
+  // Shiki styles
+  pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: $font-mono;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: 2px;
+    }
+  }
+
+  code {
+    font-family: $font-mono;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+.code-example-loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: $storm-slate;
+  font-family: $font-body;
+}
+
+.code-example-preview-content {
+  flex: 1;
+  padding: 1rem;
+  font-family: $font-body;
+  font-size: map-get($type-scale, body);
+  color: $ink-deep;
+  background-color: $pure-white;
+  position: relative;
+
+  .preview-hint {
+    margin-bottom: 2rem;
+  }
+}
