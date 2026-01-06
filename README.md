@@ -13,3 +13,8 @@ It is about building interfaces that work predictably with keyboards, screen rea
 - Vite
 - React Router
 - GitHub Pages deployment
+
+## TODOs
+
+[] RWD
+[] Some more patterns...?
