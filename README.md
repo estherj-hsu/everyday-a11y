@@ -16,5 +16,5 @@ It is about building interfaces that work predictably with keyboards, screen rea
 
 ## TODOs
 
-[] RWD
-[] Some more patterns...?
+- [ ] RWD
+- [ ] Some more patterns...?
