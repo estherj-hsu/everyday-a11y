@@ -3,6 +3,7 @@
 .code-example {
   display: grid;
   grid-template-columns: 1fr;
+
   margin: 1.5rem 0;
   border: 1px solid $fog-silver;
   border-radius: 0.5rem;
@@ -10,18 +11,30 @@
   width: 100%;
   min-width: 100%;
 
-  &:has(.code-example-preview) {
-    .code-example-code {
-      border-right: 1px solid $fog-silver;
+  .code-example-preview {
+    border-top: 1px solid $fog-silver;
+
+    @media screen and (min-width: $breakpoint-desktop) {
+      border-top: none;
     }
   }
 
-  &.code-example--preview-equal {
-    grid-template-columns: 1fr 1fr;
-  }
+  @media screen and (min-width: $breakpoint-desktop) {
+    grid-template-columns: 1fr;
 
-  &.code-example--preview-narrow {
-    grid-template-columns: 2fr 1fr;
+    &:has(.code-example-preview) {
+      .code-example-code {
+        border-right: 1px solid $fog-silver;
+      }
+    }
+
+    &.code-example--preview-equal {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &.code-example--preview-narrow {
+      grid-template-columns: 2fr 1fr;
+    }
   }
 }
 
@@ -54,6 +67,10 @@
   cursor: pointer;
   line-height: 1;
 
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, small);
+  }
+
   &:hover {
     background-color: $pure-white;
     border-color: $twilight-violet;
@@ -68,10 +85,13 @@
 .code-example-content {
   flex: 1;
   overflow-x: auto;
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.6;
+  padding: 0.75rem;
+  font-size: map-get($type-scale, small);
   background-color: $pure-white;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    padding: 1rem;
+  }
 
   // Shiki styles
   pre {
@@ -117,6 +137,10 @@
   color: $ink-deep;
   background-color: $pure-white;
   position: relative;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, body);
+  }
 
   .preview-hint {
     margin-bottom: 2rem;

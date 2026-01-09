@@ -27,7 +27,7 @@ function App() {
       <Route
         path="/foundations"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Foundations />
           </PageLayout>
         }
@@ -35,7 +35,7 @@ function App() {
       <Route
         path="/patterns"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Patterns />
           </PageLayout>
         }
@@ -43,7 +43,7 @@ function App() {
       <Route
         path="/patterns/landmarks"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Landmarks />
           </PageLayout>
         }
@@ -51,7 +51,7 @@ function App() {
       <Route
         path="/patterns/buttons-links"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <ButtonsLinks />
           </PageLayout>
         }
@@ -59,7 +59,7 @@ function App() {
       <Route
         path="/patterns/forms"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Forms />
           </PageLayout>
         }
@@ -67,7 +67,7 @@ function App() {
       <Route
         path="/patterns/accordions"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Accordions />
           </PageLayout>
         }
@@ -75,7 +75,7 @@ function App() {
       <Route
         path="/patterns/tabs"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Tabs />
           </PageLayout>
         }
@@ -83,7 +83,7 @@ function App() {
       <Route
         path="/patterns/modal-dialog"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <ModalDialog />
           </PageLayout>
         }
@@ -91,7 +91,7 @@ function App() {
       <Route
         path="/patterns/navigation"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <Navigation />
           </PageLayout>
         }
@@ -99,7 +99,7 @@ function App() {
       <Route
         path="/check-fix"
         element={
-          <PageLayout showNav={true}>
+          <PageLayout>
             <CheckFix />
           </PageLayout>
         }

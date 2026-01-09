@@ -4,6 +4,11 @@
   .home-links {
     margin-top: 2rem;
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    @media screen and (min-width: ($max-content-width + 2rem)) {
+      gap: 1rem;
+    }
   }
 }

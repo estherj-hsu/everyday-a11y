@@ -1,62 +1,185 @@
 @use '../styles/variables' as *;
 
-.nav {
-  max-width: $max-content-width;
-  width: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
-  ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1rem;
+  @media screen and (min-width: $breakpoint-desktop) {
+    gap: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  header {
     width: 100%;
-    margin: 0 auto;
-    padding-left: 0;
-    max-width: unset;
-    margin-bottom: 2rem;
+    max-width: $max-content-width;
+    padding: 0 1rem;
 
-    .nav-item {
-      font-family: $font-heading;
-      font-size: map-get($type-scale, h4);
-      font-weight: 700;
-      margin: 0;
+    @media screen and (min-width: ($max-content-width + 2rem)) {
+      padding: 0;
+    }
 
-      &.nav-item--home {
-        font-size: map-get($type-scale, h3);
-        margin-right: auto;
-        font-weight: 800;
-      }
+    .nav {
+      width: 100%;
 
-      &.nav-item--link {
-        color: $harbor-blue;
-        position: relative;
+      ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem 0.5rem;
+        width: 100%;
+        margin: 0 auto;
+        padding-left: 0;
+        max-width: unset;
+        margin-bottom: 1rem;
 
-        a,
-        span {
-          color: inherit;
+        @media screen and (min-width: $breakpoint-desktop) {
+          justify-content: flex-end;
+          margin-bottom: 2rem;
+          gap: 1rem;
         }
 
-        &:not(:last-child) {
-          &:after {
-            content: '//';
-            color: $fog-silver;
-            margin-left: 1em;
+        .nav-item {
+          font-family: $font-heading;
+          font-size: map-get($type-scale, body);
+          font-weight: 700;
+          margin: 0;
+
+          @media screen and (min-width: $breakpoint-desktop) {
+            font-size: map-get($type-scale-desktop, h4);
+          }
+
+          &.nav-item--home {
+            font-size: map-get($type-scale, h3);
+            font-weight: 800;
+            flex-basis: 100%;
+            text-align: center;
+
+            @media screen and (min-width: $breakpoint-desktop) {
+              font-size: map-get($type-scale-desktop, h3);
+              flex-basis: auto;
+              text-align: left;
+              margin-right: auto;
+            }
+          }
+
+          &.nav-item--link {
+            color: $harbor-blue;
+            position: relative;
+
+            a,
+            span {
+              color: inherit;
+            }
+
+            &:not(:last-child) {
+              &:after {
+                content: '//';
+                color: $fog-silver;
+                margin-left: 0.5em;
+
+                @media screen and (min-width: $breakpoint-desktop) {
+                  margin-left: 1em;
+                }
+              }
+            }
+
+            a:hover {
+              color: $ink-deep;
+              text-decoration: underline;
+            }
+          }
+
+          &.nav-item--active {
+            color: $ink-deep;
+          }
+
+          a {
+            text-decoration: none;
+            width: fit-content;
+            display: inline-flex;
           }
         }
-
-        a:hover {
-          color: $ink-deep;
-          text-decoration: underline;
-        }
       }
+    }
+  }
 
-      &.nav-item--active {
-        color: $ink-deep;
+  main {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: $max-content-width;
+    padding: 0 1rem;
+    flex-grow: 1;
+
+    @media screen and (min-width: ($max-content-width + 2rem)) {
+      padding: 0;
+    }
+
+    > div {
+      flex: 1;
+    }
+
+    &[tabIndex] {
+      &:focus-visible {
+        outline: 2px solid $twilight-violet;
+        outline-offset: 4px;
       }
+    }
 
-      a {
-        text-decoration: none;
+    section {
+      margin-top: 2rem;
+
+      @media screen and (min-width: $breakpoint-desktop) {
+        margin-top: 4rem;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    color: $storm-slate;
+    font-family: $font-heading;
+    font-weight: bold;
+    position: relative;
+    padding-top: 1rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3rem;
+      height: 1px;
+      background-color: $fog-silver;
+    }
+
+    span {
+      margin-left: 0.15em;
+      cursor: help;
+    }
+
+    a {
+      color: $berry-ink;
+      margin-left: 0.15em;
+      padding: 0 0.15em;
+      text-decoration: none;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: $berry-ink;
+        color: $pure-white;
       }
     }
   }

@@ -5,7 +5,12 @@ export default function Home() {
   return (
     <div className="home">
       <h1 className="logo" aria-label="Everyday Accessibility">
-        Everyday <span>A</span>ccessibility
+        <span aria-hidden>
+          <span>Everyday</span>
+          <span>
+            <span className="logo-a">A</span>ccessibility
+          </span>
+        </span>
       </h1>
 
       <p className="h3">Practical UI & Interaction A11y for Makers</p>

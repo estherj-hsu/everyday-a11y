@@ -49,8 +49,8 @@ export default function ButtonsLinks() {
       <section className="example">
         <h2>Focus Indicator</h2>
         <p>
-          <mark>Focus indicators show where keyboard focus is.</mark>
-          Removing or weakening them makes navigation unreliable. Use <code>:focus-visible</code> to provide a clear outline without affecting mouse users.
+          <mark>Focus indicators show where keyboard focus is.</mark> Removing or weakening them makes navigation unreliable. Use <code>:focus-visible</code> to provide a clear outline without
+          affecting mouse users.
         </p>
 
         <ul className="references">

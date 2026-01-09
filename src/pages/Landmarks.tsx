@@ -75,7 +75,7 @@ export default function Landmarks() {
 </body>`}
           previewCode={`<div class="sample-body">
   <header>
-    <nav class="nav-main" aria-label="Primary Navigation">
+    <nav class="nav-main text-small" aria-label="Primary Navigation">
       Primary Navigation
     </nav>
 

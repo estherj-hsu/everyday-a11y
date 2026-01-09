@@ -21,14 +21,14 @@ export default function Accordions() {
         <CodeExample
           code={`<details>
   <summary>Accordion Heading</summary>
-  <div class="content">
+  <div>
     <p>Accordion content.</p>
   </div>
 </details>`}
           previewCode={`<div class="accordions">
 <details class="accordion">
   <summary>Why do we care so much about accessibility?</summary>
-  <div class="content">
+  <div>
     <p class="text-small">
       Because small interaction details compound. Keyboard access, clear focus,
       and predictable behavior help more people use what we build without friction.
@@ -163,8 +163,7 @@ export default function Accordions() {
 
         <h3>Accordion Animation Considerations</h3>
         <p>
-          Animating height directly often causes layout thrashing and jank. A grid-based approach allows panels to <mark>animate smoothly without measuring content height</mark>
-          in JavaScript.
+          Animating height directly often causes layout thrashing and jank. A grid-based approach allows panels to <mark>animate smoothly without measuring content height</mark> in JavaScript.
         </p>
         <p>⚠️ With a fixed transition duration (0.3s here), perceived speed varies with content length. Longer panels appear to move faster.</p>
 

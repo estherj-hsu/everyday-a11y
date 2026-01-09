@@ -6,7 +6,7 @@ export default function Patterns() {
     <div className="components">
       <h1>Patterns</h1>
 
-      <section className="cards">
+      <div className="cards">
         <div className="card">
           <h2 className="h3">
             <Link to="/patterns/landmarks">Landmarks</Link>
@@ -49,7 +49,7 @@ export default function Patterns() {
           </h2>
           <p className="text-small">Clear questions, clear errors, clear expectations.</p>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

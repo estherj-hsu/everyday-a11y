@@ -11,9 +11,7 @@ export default function Forms() {
         <h2>Labeling Form Controls</h2>
 
         <p>
-          Every form control needs a programmatic label.
-          <mark>Visual proximity is not enough.</mark>
-          If a label is not associated in the markup, assistive technologies cannot announce it reliably.
+          Every form control needs a programmatic label. <mark>Visual proximity is not enough.</mark> If a label is not associated in the markup, assistive technologies cannot announce it reliably.
         </p>
 
         <h3>Key Requirements</h3>
@@ -82,8 +80,7 @@ export default function Forms() {
         </p>
 
         <p>
-          <mark>Always use native grouping first.</mark>
-          <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> provide reliable semantics without extra logic.
+          <mark>Always use native grouping first.</mark> <code>&lt;fieldset&gt;</code> and <code>&lt;legend&gt;</code> provide reliable semantics without extra logic.
         </p>
 
         <h3>Key Requirements</h3>
@@ -140,8 +137,7 @@ export default function Forms() {
 
         <h3>Radio Buttons and Checkboxes</h3>
         <p>
-          Radio buttons and checkboxes almost always belong to a set. Each option needs its own label, but users also need to understand the
-          <mark>question</mark> those options answer.
+          Radio buttons and checkboxes almost always belong to a set. Each option needs its own label, but users also need to understand the <mark>question</mark> those options answer.
         </p>
         <p>Group related options so assistive technologies can announce the start, context, and end of the group.</p>
 

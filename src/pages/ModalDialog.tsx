@@ -17,8 +17,7 @@ export default function ModalDialog() {
       <section className="example">
         <h2>Native Dialog</h2>
         <p>
-          The native <code>&lt;dialog&gt;</code> element handles focus trapping, keyboard interaction, and modal behavior automatically.
-          <mark>This is the safest and least error-prone option.</mark>
+          The native <code>&lt;dialog&gt;</code> element handles focus trapping, keyboard interaction, and modal behavior automatically. <mark>This is the safest and least error-prone option.</mark>
         </p>
 
         <h3>Dev Notes</h3>
@@ -79,7 +78,7 @@ export default function ModalDialog() {
       <section className="example">
         <h2>Custom Dialog (Using Divs)</h2>
         <p>
-          Some projects cannot use <code>&lt;dialog&gt;</code> due to legacy code, animation requirements, or framework constraints.
+          Some projects cannot use <code>&lt;dialog&gt;</code> due to legacy code, animation requirements, or framework constraints.{' '}
           <mark>In those cases, modal behavior must be implemented manually.</mark>
         </p>
 
@@ -88,8 +87,7 @@ export default function ModalDialog() {
           This example uses <code>autofocus</code> to demonstrate initial focus placement, but <code>autofocus</code> alone does not make a dialog accessible.
         </p>
         <p>
-          <mark>Custom dialogs require explicit focus management.</mark>
-          Even when implemented carefully, they rarely match native behavior.
+          <mark>Custom dialogs require explicit focus management.</mark> Even when implemented carefully, they rarely match native behavior.
         </p>
         <p>
           For custom dialogs, <code>inert</code> is the modern way to disable background content, but it must still be paired with focus trapping and return logic.

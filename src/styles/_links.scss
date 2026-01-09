@@ -22,9 +22,9 @@ a {
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.625rem 0.938rem 0.625rem 1.25rem;
+  padding: 0.625em 0.938em 0.625em 1.25em;
   border-radius: 1.5rem;
-  border: 3px solid $harbor-blue;
+  border: 0.2em solid $harbor-blue;
   font-family: $font-heading;
   font-weight: 800;
   line-height: 1;
@@ -32,6 +32,10 @@ a {
   text-decoration: none;
   color: $harbor-blue;
   transition: background-color 0.3s ease, color 0.3s ease;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, body);
+  }
 
   &:hover {
     background-color: $harbor-blue;

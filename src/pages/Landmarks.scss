@@ -40,7 +40,11 @@
       padding: 0.25rem;
 
       input {
-        width: 8rem;
+        width: 5rem;
+
+        @media screen and (min-width: $breakpoint-desktop) {
+          width: 8rem;
+        }
       }
     }
   }

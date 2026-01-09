@@ -20,39 +20,51 @@ export default function PageLayout({ children, showNav = true }: PageLayoutProps
   return (
     <div className="container">
       {showNav && (
-        <nav className="nav" aria-label="Main Navigation">
-          <ul>
-            {navItems.map(item => {
-              const isActive = currentPath === item.path
-              let className = item.isHome ? 'nav-item nav-item--home' : 'nav-item nav-item--link'
-              if (isActive) {
-                className += ' nav-item--active'
-              }
+        <header>
+          <nav className="nav" aria-label="Main Navigation">
+            <ul>
+              {navItems.map(item => {
+                const isActive = currentPath === item.path
+                let className = item.isHome ? 'nav-item nav-item--home' : 'nav-item nav-item--link'
+                if (isActive) {
+                  className += ' nav-item--active'
+                }
 
-              return (
-                <li key={item.path} className={className}>
-                  {isActive ? (
-                    <span className={item.className} aria-current="page">
-                      {item.label}
-                    </span>
-                  ) : (
-                    <Link to={item.path} className={item.className}>
-                      {item.className === 'logo' ? (
-                        <>
-                          Everyday <span>A</span>ccessibility
-                        </>
-                      ) : (
-                        item.label
-                      )}
-                    </Link>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+                return (
+                  <li key={item.path} className={className}>
+                    {isActive ? (
+                      <span className={item.className} aria-current="page">
+                        {item.label}
+                      </span>
+                    ) : (
+                      <Link to={item.path} className={item.className}>
+                        {item.className === 'logo' ? (
+                          <span aria-label="Everyday Accessibility">
+                            <span aria-hidden>
+                              <span>Everyday</span>
+                              <span>
+                                <span className="logo-a">A</span>ccessibility
+                              </span>
+                            </span>
+                          </span>
+                        ) : (
+                          item.label
+                        )}
+                      </Link>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+        </header>
       )}
       <main className="content">{children}</main>
+      <footer>
+        <p className="text-small">
+          Built with <span title="Accessible by default. Fancy by choice.">semantics, not vibes</span>, by <a href="https://github.com/estherj-hsu">Esther</a>
+        </p>
+      </footer>
     </div>
   )
 }

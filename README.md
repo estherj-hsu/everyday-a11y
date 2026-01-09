@@ -6,7 +6,7 @@ It focuses on practical, real-world accessibility patterns for frontend develope
 This is not a WCAG checklist site.  
 It is about building interfaces that work predictably with keyboards, screen readers, and real users.
 
-## Tech Stack
+## 🧠 Built With
 
 - React
 - TypeScript
@@ -14,7 +14,10 @@ It is about building interfaces that work predictably with keyboards, screen rea
 - React Router
 - GitHub Pages deployment
 
-## TODOs
+## 💡 Future Ideas
 
-- [ ] RWD
 - [ ] Some more patterns...?
+
+## 📜 License
+
+MIT — Made with ❤️ by [Esther Hsu](https://estherj-hsu.github.io/)

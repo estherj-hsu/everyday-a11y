@@ -27,7 +27,7 @@ h6,
   font-family: $font-heading;
   line-height: 1.2;
   margin-top: 1lh;
-  margin-bottom: 0.25lh;
+  margin-bottom: 0.5lh;
   color: $storm-slate;
   width: 100%;
   max-width: $max-content-width;
@@ -41,28 +41,49 @@ h1,
 .h1 {
   font-size: map-get($type-scale, h1);
   font-weight: 700;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, h1);
+  }
 }
 h2,
 .h2 {
   font-size: map-get($type-scale, h2);
   font-weight: 700;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, h2);
+  }
 }
 h3,
 .h3 {
   font-size: map-get($type-scale, h3);
   font-weight: 800;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, h3);
+  }
 }
 h4,
 .h4 {
-  font-size: map-get($type-scale, body);
+  font-size: map-get($type-scale, h4);
   font-weight: 800;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, h4);
+  }
 }
 
 p {
   font-size: map-get($type-scale, body);
+  margin-top: 0.5lh;
   margin-bottom: 0.5lh;
   width: 100%;
   max-width: $max-paragraph-width;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, body);
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -72,16 +93,20 @@ p {
 small,
 .text-small {
   font-size: map-get($type-scale, small);
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, small);
+  }
 }
 
 ol,
 ul {
-  margin-top: 0.5lh;
-  margin-bottom: 0.5lh;
   width: 100%;
   max-width: $max-paragraph-width;
   margin-left: 0;
   padding-left: 1rem;
+  margin-top: 0.75lh;
+  margin-bottom: 1lh;
 }
 
 li {
@@ -105,8 +130,11 @@ dl {
   margin-bottom: 1lh;
   width: 100%;
   max-width: $max-content-width;
-  columns: 2;
-  column-gap: 2rem;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    columns: 2;
+    column-gap: 2rem;
+  }
 
   dt {
     font-weight: 600;
@@ -126,7 +154,7 @@ mark {
   font-weight: 500;
 
   // Source: https://pepelsbey.dev/articles/skewed-highlight/
-  --mark-color: #{$golden-yolk};
+  --mark-color: #{rgba($golden-yolk, 0.7)};
   --mark-skew: 0.25em;
   --mark-height: 0.5em;
   --mark-overlap: 0.35em;
@@ -142,7 +170,7 @@ mark {
   background-repeat: no-repeat;
 
   + mark {
-    margin-left: 0.25em;
+    margin-left: 0.2em;
   }
 }
 
@@ -150,6 +178,10 @@ code,
 pre {
   font-family: $font-mono;
   font-size: map-get($type-scale, small);
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, small);
+  }
 }
 
 code {
@@ -169,7 +201,13 @@ code {
   transition: color 0.3s ease;
   text-decoration: none;
 
-  span {
+  [aria-hidden] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5em;
+  }
+
+  .logo-a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -185,7 +223,7 @@ code {
   &:is(a):hover {
     color: $ink-deep;
 
-    span {
+    .logo-a {
       background-color: $ink-deep;
       color: $pure-white;
     }

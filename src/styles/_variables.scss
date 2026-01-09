@@ -15,7 +15,24 @@ $font-heading: 'Nunito', sans-serif;
 $font-body: 'Inter', sans-serif;
 $font-mono: 'Sono', monospace;
 
+// Type scale - mobile (base)
 $type-scale: (
+  // 36px
+  h1: 2.25rem,
+  // 28px
+  h2: 2rem,
+  // 22px
+  h3: 1.25rem,
+  // 18px
+  h4: 1.125rem,
+  // 16px
+  body: 1rem,
+  // 13px
+  small: 0.8125rem
+);
+
+// Type scale - desktop (768px and up)
+$type-scale-desktop: (
   // 64px
   h1: 4rem,
   // 36px
@@ -23,12 +40,15 @@ $type-scale: (
   // 24px
   h3: 1.5rem,
   // 20px
-  h4: 1.125rem,
+  h4: 1.25rem,
   // 16px
   body: 1rem,
   // 14px
   small: 0.875rem
 );
+
+// Breakpoint
+$breakpoint-desktop: 768px;
 
 // Layout
 $max-content-width: 60rem;
