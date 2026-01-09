@@ -11,5 +11,36 @@ export default defineConfig(({ command }) => ({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Separate vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+              return 'react-vendor'
+            }
+            if (id.includes('shiki')) {
+              return 'shiki-vendor'
+            }
+            // Other node_modules go into a separate vendor chunk
+            return 'vendor'
+          }
+          // Group pattern pages together
+          if (id.includes('/pages/') && (
+            id.includes('Landmarks') ||
+            id.includes('ButtonsLinks') ||
+            id.includes('Forms') ||
+            id.includes('Accordions') ||
+            id.includes('Tabs') ||
+            id.includes('ModalDialog') ||
+            id.includes('Navigation')
+          )) {
+            return 'patterns'
+          }
+        },
+      },
+    },
+  },
 }))
 

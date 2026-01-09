@@ -12,3 +12,93 @@ body {
     navigation: auto;
   }
 }
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  gap: 1.5rem;
+
+  .loading-logo {
+    font-family: $font-heading;
+    font-weight: 800;
+    font-size: map-get($type-scale-desktop, h1);
+    background-color: $berry-ink;
+    color: $pure-white;
+    padding: 0.2em;
+    line-height: 1;
+    text-align: center;
+    position: relative;
+    aspect-ratio: 1;
+    clip-path: shape(
+      from 90.27% 38.13%,
+      curve to 90.99% 62.33% with 93.59% 50%,
+      curve to 78.59% 82.91% with 88.39% 74.67%,
+      curve to 56.15% 93.19% with 68.79% 91.15%,
+      curve to 31.98% 89.65% with 43.5% 95.22%,
+      curve to 12.79% 73.63% with 20.47% 84.08%,
+      curve to 5.02% 49.98% with 5.1% 63.18%,
+      curve to 12.67% 26.3% with 4.95% 36.77%,
+      curve to 31.75% 8.96% with 20.39% 15.83%,
+      curve to 56.76% 3.7% with 43.11% 2.09%,
+      curve to 78.68% 15.78% with 70.41% 5.3%,
+      curve to 90.27% 38.13% with 86.95% 26.26%
+    );
+    animation: blob-morph 3s ease-in-out infinite;
+    will-change: clip-path;
+  }
+
+  @keyframes blob-morph {
+    0%,
+    100% {
+      clip-path: shape(
+        from 95.05% 36.64%,
+        curve to 93.64% 62.46% with 98.52% 50%,
+        curve to 78.72% 82.9% with 88.77% 74.92%,
+        curve to 56.23% 92.03% with 68.68% 90.89%,
+        curve to 32.58% 88.11% with 43.79% 93.17%,
+        curve to 13.86% 72.93% with 21.36% 83.05%,
+        curve to 7.47% 50.33% with 6.36% 62.81%,
+        curve to 12.99% 25.11% with 8.58% 37.84%,
+        curve to 30.44% 8.53% with 17.4% 12.38%,
+        curve to 57.12% 4.6% with 43.48% 4.67%,
+        curve to 81.17% 13.91% with 70.76% 4.53%,
+        curve to 95.05% 36.64% with 91.58% 23.28%
+      );
+    }
+
+    50% {
+      clip-path: shape(
+        from 90.27% 38.13%,
+        curve to 90.99% 62.33% with 93.59% 50%,
+        curve to 78.59% 82.91% with 88.39% 74.67%,
+        curve to 56.15% 93.19% with 68.79% 91.15%,
+        curve to 31.98% 89.65% with 43.5% 95.22%,
+        curve to 12.79% 73.63% with 20.47% 84.08%,
+        curve to 5.02% 49.98% with 5.1% 63.18%,
+        curve to 12.67% 26.3% with 4.95% 36.77%,
+        curve to 31.75% 8.96% with 20.39% 15.83%,
+        curve to 56.76% 3.7% with 43.11% 2.09%,
+        curve to 78.68% 15.78% with 70.41% 5.3%,
+        curve to 90.27% 38.13% with 86.95% 26.26%
+      );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loading-logo {
+      animation: none;
+      border-radius: 0.1em;
+      clip-path: none;
+    }
+  }
+
+  .loading-text {
+    font-weight: 600;
+    color: $storm-slate;
+    text-align: center;
+  }
+}
