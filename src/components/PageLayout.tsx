@@ -9,6 +9,7 @@ interface PageLayoutProps {
 export default function PageLayout({ children, showNav = true }: PageLayoutProps) {
   const location = useLocation()
   const currentPath = location.pathname
+  const hasParent = currentPath.startsWith('/patterns/')
 
   const navItems = [
     { path: '/', label: `Everyday Accessibility`, className: 'logo', isHome: true },
@@ -59,7 +60,19 @@ export default function PageLayout({ children, showNav = true }: PageLayoutProps
           </nav>
         </header>
       )}
-      <main className="content">{children}</main>
+      <main className="content">
+        {hasParent && (
+          <Link to={currentPath.split('/').slice(0, -1).join('/')} className="back-link">
+            Back to Patterns
+          </Link>
+        )}
+        {children}
+        {hasParent && (
+          <Link to={currentPath.split('/').slice(0, -1).join('/')} className="back-link">
+            Back to Patterns
+          </Link>
+        )}
+      </main>
       <footer>
         <p className="text-small">
           Built with <span title="Accessible by default. Fancy by choice.">semantics, not vibes</span>, by <a href="https://github.com/estherj-hsu">Esther</a>

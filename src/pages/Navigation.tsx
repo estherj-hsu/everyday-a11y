@@ -47,12 +47,12 @@ export default function Navigation() {
     <li><a href="#">Check & Fix</a></li>
   </ul>
 </nav>
-<main id="preview-main" tabIndex="-1">
+<div id="preview-main" tabIndex="-1">
   <h1 class="h2">Homepage</h1>
   <p class="preview-hint text-small">
     💡 Use Tab to reveal the Skip to Content link
   </p>
-</main>`}
+</div>`}
         />
       </section>
 

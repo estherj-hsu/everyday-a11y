@@ -1,4 +1,5 @@
-@use '../styles/variables' as *;
+@use "../styles/variables" as *;
+@use "../styles/links" as *;
 
 .container {
   display: flex;
@@ -82,7 +83,7 @@
 
             &:not(:last-child) {
               &:after {
-                content: '//';
+                content: "//";
                 color: $fog-silver;
                 margin-left: 0.5em;
 
@@ -114,7 +115,9 @@
 
   main {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     margin: 0 auto;
     width: 100%;
     max-width: $max-content-width;
@@ -125,7 +128,7 @@
       padding: 0;
     }
 
-    > div {
+    > div:not(.home) {
       flex: 1;
     }
 
@@ -133,6 +136,35 @@
       &:focus-visible {
         outline: 2px solid $twilight-violet;
         outline-offset: 4px;
+      }
+    }
+
+    .back-link {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25em;
+      line-height: 1;
+
+      &:last-child {
+        margin-top: 2rem;
+      }
+
+      &::before {
+        @include mask-icon("/assets/icon-chevron.svg");
+        content: "";
+        width: 1em;
+        height: 1em;
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+      }
+
+      @media (hover) {
+        &:hover {
+          &::before {
+            transform: rotate(180deg) translateX(-0.25em);
+          }
+        }
       }
     }
 
@@ -155,7 +187,7 @@
     padding-top: 1rem;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: -1rem;
       left: 50%;
