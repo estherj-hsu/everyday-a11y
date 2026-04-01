@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import PageLayout from './components/PageLayout'
 import './App.scss'
