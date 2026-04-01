@@ -1,5 +1,6 @@
 import './Tabs.scss'
 import CodeExample from '../components/CodeExample'
+import { HashLink } from 'react-router-hash-link'
 
 export default function Tabs() {
   return (
@@ -46,6 +47,12 @@ export default function Tabs() {
           </li>
           <li>Focus must remain visible and predictable at all times.</li>
         </ul>
+
+        <h3>Dev Note</h3>
+        <p>
+          For panels with complex content or internal section structure, consider adding a <HashLink to="/foundations#visually-hidden">visually hidden</HashLink> heading to maintain a logical heading
+          hierarchy. Simple panels with short content do not require one.
+        </p>
 
         <ul className="references">
           <li>
