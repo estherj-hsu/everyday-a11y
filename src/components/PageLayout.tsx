@@ -75,7 +75,14 @@ export default function PageLayout({ children, showNav = true }: PageLayoutProps
       </main>
       <footer>
         <p className="text-small">
-          Built with <span title="Accessible by default. Fancy by choice.">semantics, not vibes</span>, by <a href="https://github.com/estherj-hsu">Esther</a>
+          Built with <span title="Accessible by default. Fancy by choice.">semantics, not vibes</span>, and{' '}
+          <a className="coffee" href="https://buymeacoffee.com/estherh">
+            lots of ☕
+          </a>{' '}
+          by{' '}
+          <a className="git" href="https://github.com/estherj-hsu">
+            Esther
+          </a>
         </p>
       </footer>
     </div>

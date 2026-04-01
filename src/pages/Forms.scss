@@ -1,5 +1,224 @@
-@use '../styles/variables' as *;
+@use "../styles/variables" as *;
 
-// Forms page specific styles
-// Add your forms page styles here
+// Form field group used in previews
+form {
+  button {
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    background-color: $pure-white;
+    cursor: pointer;
+    border: 2px solid $ink-deep;
+    font-weight: bold;
 
+    &:hover {
+      background-color: $twilight-violet;
+      color: $pure-white;
+      border-color: $twilight-violet;
+    }
+
+    &[aria-disabled="true"] {
+      border: 2px solid $fog-silver;
+      background-color: $paper-mist;
+      cursor: not-allowed;
+      color: $storm-slate;
+    }
+  }
+}
+
+.field {
+  margin-bottom: 1rem;
+
+  & + & {
+    margin-top: 1.25rem;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  input,
+  select,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.5rem;
+    border: 2px solid $storm-slate;
+    border-radius: 0.25rem;
+    font: inherit;
+    box-sizing: border-box;
+    color: $ink-deep;
+    background: $pure-white;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: 2px;
+    }
+  }
+
+  input[aria-invalid="true"],
+  .error-input {
+    border-color: $error-red;
+  }
+
+  input[readonly] {
+    background: $paper-mist;
+  }
+
+  textarea {
+    min-height: 5rem;
+    resize: vertical;
+  }
+}
+
+.error:not([hidden]) {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  margin-top: 0.25rem;
+  color: $error-red;
+  font-size: map-get($type-scale, small);
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.hint {
+  display: block;
+  margin-top: 0.25rem;
+  color: $storm-slate;
+  font-size: map-get($type-scale, small);
+
+  &--mb {
+    margin-bottom: 1rem;
+  }
+}
+
+.required-note {
+  font-size: map-get($type-scale, small);
+  color: $storm-slate;
+  margin-bottom: 1rem;
+}
+
+.required-star {
+  color: $error-red;
+  font-weight: 700;
+}
+
+.summary {
+  border: 2px solid $error-red;
+  border-radius: 0.375rem;
+  padding: 0.875rem 1rem;
+
+  h2 {
+    font-size: map-get($type-scale, body);
+    margin: 0 0 0.5rem;
+    color: $error-red;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+}
+
+// Custom select (button + listbox pattern)
+.cs-control {
+  position: relative;
+}
+
+.cs-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  border: 2px solid $storm-slate;
+  border-radius: 0.25rem;
+  background: $pure-white;
+  color: $ink-deep;
+  text-align: left;
+  cursor: pointer;
+
+  &[aria-expanded="true"] {
+    border-color: $twilight-violet;
+    border-bottom-color: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $twilight-violet;
+    outline-offset: 2px;
+  }
+
+  .cs-chevron {
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+
+  &[aria-expanded="true"] .cs-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.cs-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: map-get($type-scale, small);
+}
+
+[role="listbox"] {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+  background: $pure-white;
+  border: 2px solid $twilight-violet;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+  max-height: 11rem;
+  overflow-y: auto;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+[role="listbox"] [role="option"] {
+  padding: 0.375rem 0.75rem;
+  cursor: default;
+  font-size: map-get($type-scale, small);
+
+  &:hover {
+    background: $paper-mist;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $twilight-violet;
+    outline-offset: -2px;
+    background: $paper-mist;
+  }
+
+  &[aria-selected="true"] {
+    background: rgba($twilight-violet, 0.1);
+    color: $twilight-violet;
+    font-weight: 600;
+  }
+}
+
+.success {
+  font-size: map-get($type-scale, small);
+  color: $success-green;
+  margin-top: 0.5rem;
+}

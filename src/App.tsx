@@ -1,7 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import PageLayout from './components/PageLayout'
 import './App.scss'
+import './pages/DatePicker.scss'
 
 // Lazy load page components for code splitting
 const Home = lazy(() => import('./pages/Home'))
@@ -14,6 +15,10 @@ const Accordions = lazy(() => import('./pages/Accordions'))
 const Tabs = lazy(() => import('./pages/Tabs'))
 const ModalDialog = lazy(() => import('./pages/ModalDialog'))
 const Navigation = lazy(() => import('./pages/Navigation'))
+const Combobox = lazy(() => import('./pages/Combobox'))
+const LiveRegion = lazy(() => import('./pages/LiveRegion'))
+const DataGrid = lazy(() => import('./pages/DataGrid'))
+const DatePicker = lazy(() => import('./pages/DatePicker'))
 const CheckFix = lazy(() => import('./pages/CheckFix'))
 
 function App() {
@@ -106,6 +111,38 @@ function App() {
           element={
             <PageLayout>
               <Navigation />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/patterns/combobox"
+          element={
+            <PageLayout>
+              <Combobox />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/patterns/live-region"
+          element={
+            <PageLayout>
+              <LiveRegion />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/patterns/data-grid"
+          element={
+            <PageLayout>
+              <DataGrid />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/patterns/date-picker"
+          element={
+            <PageLayout>
+              <DatePicker />
             </PageLayout>
           }
         />

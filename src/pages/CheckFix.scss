@@ -1,4 +1,17 @@
-@use '../styles/variables' as *;
+@use "../styles/variables" as *;
 
-// CheckFix page specific styles
-// Add your check fix page styles here
+dt {
+  &:has(.badge) {
+    display: flex;
+    align-items: center;
+  }
+}
+.badge {
+  order: -1;
+  margin-right: 0.5em;
+  padding: 0.1em 0.5em;
+  background-color: $berry-ink;
+  color: $paper-mist;
+  border-radius: 0.25rem;
+  font-size: map-get($type-scale, small);
+}

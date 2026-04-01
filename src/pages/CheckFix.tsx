@@ -15,6 +15,14 @@ export default function CheckFix() {
 
         <dl>
           <dt>
+            <a href="https://github.com/estherj-hsu/a11y-barker" target="_blank" rel="noopener noreferrer" aria-label="A11y Barker (opens in a new tab)">
+              A11y Barker
+            </a>
+            <span className="badge">Built by me</span>
+          </dt>
+          <dd className="text-small">A Chrome DevTools extension for visualizing accessibility on any page: tab order, heading structure, ARIA properties, and WCAG violations.</dd>
+
+          <dt>
             <a href="https://developer.chrome.com/docs/devtools/accessibility/" target="_blank" rel="noopener noreferrer" aria-label="Chrome DevTools Accessibility (opens in a new tab)">
               Chrome DevTools Accessibility
             </a>

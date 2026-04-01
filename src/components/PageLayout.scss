@@ -185,6 +185,7 @@
     font-weight: bold;
     position: relative;
     padding-top: 1rem;
+    margin-top: 2rem;
 
     &::after {
       content: "";
@@ -202,16 +203,24 @@
       cursor: help;
     }
 
-    a {
+    a.git {
       color: $berry-ink;
       margin-left: 0.15em;
       padding: 0 0.15em;
-      text-decoration: none;
       border-radius: 2px;
 
       &:hover {
         background-color: $berry-ink;
         color: $pure-white;
+      }
+    }
+
+    a.coffee {
+      color: $storm-slate;
+      text-decoration-style: dashed;
+
+      &:hover {
+        color: $ink-deep;
       }
     }
   }

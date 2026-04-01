@@ -49,6 +49,30 @@ export default function Patterns() {
           </h2>
           <p className="text-small">Clear questions, clear errors, clear expectations.</p>
         </div>
+        <div className="card">
+          <h2 className="h3">
+            <Link to="/patterns/live-region">Live Region</Link>
+          </h2>
+          <p className="text-small">Announce updates without stealing focus.</p>
+        </div>
+        <div className="card">
+          <h2 className="h3">
+            <Link to="/patterns/combobox">Combobox</Link>
+          </h2>
+          <p className="text-small">Filter long lists without leaving the input.</p>
+        </div>
+        <div className="card">
+          <h2 className="h3">
+            <Link to="/patterns/data-grid">Data Grid</Link>
+          </h2>
+          <p className="text-small">Two-dimensional keyboard navigation for tabular data.</p>
+        </div>
+        <div className="card">
+          <h2 className="h3">
+            <Link to="/patterns/date-picker">Date Picker</Link>
+          </h2>
+          <p className="text-small">Calendar navigation built on the grid pattern.</p>
+        </div>
       </div>
     </div>
   )

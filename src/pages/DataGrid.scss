@@ -1,0 +1,80 @@
+@use '../styles/variables' as *;
+
+.dg-feedback {
+  font-size: map-get($type-scale, small);
+  color: $twilight-violet;
+  font-weight: 600;
+  min-height: 1.5em;
+  margin-bottom: 0.5rem;
+}
+
+table[role='grid'] {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: map-get($type-scale, small);
+
+  [role='row']:not(:first-child):hover {
+    background: $paper-mist;
+  }
+
+  [role='columnheader'],
+  [role='gridcell'] {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid $fog-silver;
+    text-align: left;
+    vertical-align: middle;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: -2px;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  [role='columnheader'] {
+    background: $paper-mist;
+    font-weight: 700;
+
+    &[aria-sort] {
+      cursor: pointer;
+      user-select: none;
+
+      &:hover { background: rgba($ink-deep, 0.06); }
+    }
+  }
+
+  .sort-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.3rem;
+    vertical-align: middle;
+    opacity: 0.3;
+    color: $ink-deep;
+    position: relative;
+    top: -1px;
+
+    [aria-sort='ascending'] &,
+    [aria-sort='descending'] & {
+      opacity: 1;
+      color: $twilight-violet;
+    }
+  }
+
+  [role='gridcell'] button {
+    padding: 0.2rem 0.5rem;
+    border: 1px solid $fog-silver;
+    border-radius: 0.2rem;
+    background: $pure-white;
+    font: inherit;
+    font-size: map-get($type-scale, small);
+    cursor: pointer;
+
+    & + button { margin-left: 0.25rem; }
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: 1px;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@use "../styles/variables" as *;
+
+[data-datepicker] {
+  max-width: 18rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.month-year {
+  font-weight: 700;
+}
+
+.prev,
+.next {
+  background: transparent;
+  border: 1px solid $fog-silver;
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.6rem;
+  font-size: map-get($type-scale, body);
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $twilight-violet;
+  }
+  &:focus-visible {
+    outline: 2px solid $twilight-violet;
+    outline-offset: 2px;
+  }
+}
+
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+
+  [role="columnheader"] {
+    text-align: center;
+    font-size: map-get($type-scale, small);
+    font-weight: 700;
+    color: $storm-slate;
+    padding: 0.25rem;
+  }
+
+  [role="gridcell"] {
+    padding: 0.15rem;
+    text-align: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      margin: auto;
+      font-size: map-get($type-scale, small);
+    }
+
+    &[aria-current="date"] span {
+      border: 2px solid $twilight-violet;
+    }
+
+    &[aria-selected="true"] span {
+      background: $twilight-violet;
+      color: $pure-white;
+    }
+
+    &[aria-hidden="true"] {
+      pointer-events: none;
+      span {
+        opacity: 0;
+      }
+    }
+
+    &:not([aria-hidden="true"]):not([aria-selected="true"]):hover span {
+      background: $paper-mist;
+      cursor: pointer;
+    }
+
+    &:focus-visible {
+      outline: none;
+      span {
+        outline: 2px solid $twilight-violet;
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+.selected {
+  font-size: map-get($type-scale, small);
+  color: $storm-slate;
+  margin-top: 0.5rem;
+  min-height: 1.5em;
+}

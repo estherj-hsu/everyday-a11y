@@ -97,7 +97,53 @@ export default function Foundations() {
         <p>
           <mark>Clarity beats cleverness, every time.</mark>
         </p>
-        <p>Accessibility also lives in what people see. If users cannot visually understand or operate the interface, assistive technology alone will not save it.</p>
+        <p>
+          Heading levels reflect logical structure, not visual styling. An <code>&lt;h3&gt;</code> that follows an <code>&lt;h1&gt;</code> with no <code>&lt;h2&gt;</code> in between tells screen
+          reader users they missed a section. If a heading looks too large, fix the size in CSS, not the level in HTML.
+        </p>
+        <p>
+          Spacing communicates relationships. Tight spacing between a label and its input, with a larger gap before the next field, signals grouping to sighted users. The same grouping must be
+          expressed in markup with <code>&lt;fieldset&gt;</code> or a wrapping element.
+        </p>
+        <ul className="references">
+          <li>
+            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">1.3.1 Info and Relationships</a>;{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels">2.4.6 Headings and Labels</a>;{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/section-headings">2.4.10 Section Headings</a>{' '}(AAA)
+          </li>
+          <li>
+            <strong>Techniques</strong> <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G130">G130</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G141">G141</a>,{' '}
+            <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H69">H69</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="colour-contrast" className="h3">
+          Colour &amp; Contrast
+        </h2>
+        <p>
+          <mark>Color alone is never enough.</mark>
+        </p>
+        <p>
+          Anywhere color conveys information (error states, required fields, chart categories) a secondary indicator is required: text, an icon, a pattern, or a shape.
+        </p>
+        <p>
+          Text contrast must meet <strong>4.5:1 for normal text</strong> and <strong>3:1 for large text (18pt or 14pt bold)</strong> against its background. UI components and graphical elements that
+          convey meaning, such as input borders, focus indicators, chart lines, and button outlines, need at least <strong>3:1</strong> against adjacent colors.
+        </p>
+        <ul className="references">
+          <li>
+            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">1.4.1 Use of Color</a>;{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">1.4.3 Contrast Minimum</a>;{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">1.4.11 Non-text Contrast</a>
+          </li>
+          <li>
+            <strong>Techniques</strong> <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G14">G14</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G111">G111</a>,{' '}
+            <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G18">G18</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G145">G145</a>,{' '}
+            <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G195">G195</a>
+          </li>
+        </ul>
       </section>
 
       <section>
@@ -137,8 +183,8 @@ export default function Foundations() {
         <ul className="references">
           <li>
             <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible">2.4.7 Focus Visible</a>;{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum">2.4.11 Focus Not Obscured</a> (AA);{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced">2.4.12 Focus Not Obscured</a> (AAA);{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum">2.4.11 Focus Not Obscured</a>{' '}(AA);{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced">2.4.12 Focus Not Obscured</a>{' '}(AAA);{' '}
             <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance">2.4.13 Focus Appearance</a>
           </li>
           <li>
@@ -177,8 +223,8 @@ export default function Foundations() {
         </p>
         <ul className="references">
           <li>
-            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG21/Understanding/target-size">2.5.5 Target Size</a> (AAA);{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum">2.5.8 Target Size</a> (AA)
+            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG21/Understanding/target-size">2.5.5 Target Size</a>{' '}(AAA);{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum">2.5.8 Target Size</a>{' '}(AA)
           </li>
           <li>
             <strong>Techniques</strong> <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G207">G207</a>

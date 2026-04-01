@@ -35,7 +35,7 @@ export default function Navigation() {
   ...
 </nav>
 
-<main id="main" tabIndex="-1">
+<main id="main" tabindex="-1">
   <h1>Page Title</h1>
 </main>`}
           previewCode={`<a href="#preview-main" class="skip-link">Skip to Content</a>
@@ -289,7 +289,7 @@ export default function Navigation() {
             The link moves focus directly to a <strong>meaningful landmark</strong> (e.g., <code>&lt;main&gt;</code>).
           </li>
           <li>
-            The skip target has <code>tabIndex="-1"</code> to ensure it is programmatically focusable.
+            The skip target has <code>tabindex="-1"</code> to ensure it is programmatically focusable.
           </li>
           <li>The skip link works consistently across browsers and assistive technologies.</li>
         </ul>

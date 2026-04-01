@@ -1,4 +1,4 @@
-@use '../styles/variables' as *;
+@use "../styles/variables" as *;
 
 .sample-body {
   background-color: $paper-mist;
@@ -68,5 +68,10 @@
     padding: 0.25rem 0.5rem;
     border: 3px solid $oxide-teal;
     text-align: center;
+    margin-top: 0;
+
+    &::after {
+      display: none;
+    }
   }
 }
