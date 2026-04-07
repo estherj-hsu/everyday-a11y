@@ -1,0 +1,113 @@
+@use '../styles/variables' as *;
+
+[data-carousel] {
+  .carousel {
+    position: relative;
+  }
+
+  .carousel-slides {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $fog-silver;
+    border-radius: 6px;
+    background: $pure-white;
+  }
+
+  .carousel-slide {
+    padding: 1rem 1.25rem;
+    transition: opacity 0.35s ease;
+
+    &[hidden] {
+      display: none;
+    }
+
+    p {
+      margin: 0 0 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .carousel-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .carousel-prev,
+  .carousel-next,
+  .carousel-pause {
+    font: inherit;
+    font-size: map-get($type-scale, small);
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid $fog-silver;
+    border-radius: 4px;
+    background: $pure-white;
+    color: $ink-deep;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: 2px;
+    }
+
+    &:hover {
+      border-color: $twilight-violet;
+      color: $twilight-violet;
+    }
+  }
+
+  .carousel-pause {
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+
+    button {
+      width: 0.65rem;
+      height: 0.65rem;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: $fog-silver;
+      cursor: pointer;
+      font-size: 0;
+      line-height: 0;
+
+      &[aria-current='true'] {
+        background: $twilight-violet;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $twilight-violet;
+        outline-offset: 2px;
+      }
+
+      &:hover {
+        background: rgba($twilight-violet, 0.55);
+      }
+
+      &[aria-current='true']:hover {
+        background: $twilight-violet;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-slide {
+      transition: none;
+    }
+  }
+}

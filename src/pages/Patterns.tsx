@@ -73,6 +73,12 @@ export default function Patterns() {
           </h2>
           <p className="text-small">Calendar navigation built on the grid pattern.</p>
         </div>
+        <div className="card">
+          <h2 className="h3">
+            <Link to="/patterns/carousel">Carousel</Link>
+          </h2>
+          <p className="text-small">Rotating content that doesn&apos;t leave users behind.</p>
+        </div>
       </div>
     </div>
   )

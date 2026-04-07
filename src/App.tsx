@@ -18,6 +18,7 @@ const Combobox = lazy(() => import('./pages/Combobox'))
 const LiveRegion = lazy(() => import('./pages/LiveRegion'))
 const DataGrid = lazy(() => import('./pages/DataGrid'))
 const DatePicker = lazy(() => import('./pages/DatePicker'))
+const Carousel = lazy(() => import('./pages/Carousel'))
 const CheckFix = lazy(() => import('./pages/CheckFix'))
 const AriaReference = lazy(() => import('./pages/AriaReference'))
 
@@ -143,6 +144,14 @@ function App() {
           element={
             <PageLayout>
               <DatePicker />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/patterns/carousel"
+          element={
+            <PageLayout>
+              <Carousel />
             </PageLayout>
           }
         />

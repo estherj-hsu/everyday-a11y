@@ -1173,6 +1173,167 @@ function handleFormValidation(container: HTMLElement): () => void {
   return () => cleanup.forEach(fn => fn())
 }
 
+// Carousel (static + auto-rotating previews)
+function handleCarousel(container: HTMLElement): () => void {
+  const cleanupFns: Array<() => void> = []
+
+  container.querySelectorAll<HTMLElement>('[data-carousel]').forEach(carouselRoot => {
+    const prev = carouselRoot.querySelector<HTMLButtonElement>('.carousel-prev')
+    const next = carouselRoot.querySelector<HTMLButtonElement>('.carousel-next')
+    const slides = Array.from(carouselRoot.querySelectorAll<HTMLElement>('[role="group"][aria-roledescription="slide"]'))
+    const indicators = Array.from(carouselRoot.querySelectorAll<HTMLButtonElement>('.carousel-indicators button'))
+    const pauseBtn = carouselRoot.querySelector<HTMLButtonElement>('.carousel-pause')
+
+    if (!prev || !next || slides.length === 0) return
+
+    const totalSlides = slides.length
+    let currentIndex = slides.findIndex(s => !s.hasAttribute('hidden'))
+    if (currentIndex < 0) currentIndex = 0
+
+    let intervalId: ReturnType<typeof setInterval> | null = null
+    let isPlaying = false
+
+    const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const updateButtonLabels = () => {
+      if (pauseBtn) {
+        prev.setAttribute('aria-label', 'Previous slide')
+        next.setAttribute('aria-label', 'Next slide')
+        return
+      }
+      const y = totalSlides
+      if (currentIndex === 0) {
+        prev.setAttribute('aria-label', `Previous slide, currently on slide 1 of ${y}`)
+        next.setAttribute('aria-label', 'Next slide')
+      } else if (currentIndex === totalSlides - 1) {
+        prev.setAttribute('aria-label', 'Previous slide')
+        next.setAttribute('aria-label', `Next slide, currently on slide ${y} of ${y}`)
+      } else {
+        prev.setAttribute('aria-label', 'Previous slide')
+        next.setAttribute('aria-label', 'Next slide')
+      }
+    }
+
+    const goToSlide = (index: number) => {
+      const clamped = Math.max(0, Math.min(totalSlides - 1, index))
+      currentIndex = clamped
+      slides.forEach((slide, i) => {
+        if (i === currentIndex) {
+          slide.removeAttribute('hidden')
+        } else {
+          slide.setAttribute('hidden', '')
+        }
+        slide.setAttribute('aria-label', `Slide ${i + 1} of ${totalSlides}`)
+      })
+      indicators.forEach((btn, i) => {
+        if (i === currentIndex) {
+          btn.setAttribute('aria-current', 'true')
+        } else {
+          btn.removeAttribute('aria-current')
+        }
+      })
+      updateButtonLabels()
+    }
+
+    const advanceAuto = () => {
+      const nextIdx = (currentIndex + 1) % totalSlides
+      goToSlide(nextIdx)
+    }
+
+    const clearIntervalSafe = () => {
+      if (intervalId !== null) {
+        clearInterval(intervalId)
+        intervalId = null
+      }
+    }
+
+    const stopAutoplay = () => {
+      clearIntervalSafe()
+      isPlaying = false
+      if (pauseBtn) {
+        pauseBtn.setAttribute('aria-label', 'Play carousel')
+        pauseBtn.setAttribute('aria-pressed', 'false')
+        pauseBtn.textContent = 'Play'
+      }
+    }
+
+    const startAutoplay = () => {
+      if (prefersReducedMotion() || !pauseBtn) return
+      clearIntervalSafe()
+      intervalId = window.setInterval(advanceAuto, 5000)
+      isPlaying = true
+      pauseBtn.setAttribute('aria-label', 'Pause carousel')
+      pauseBtn.setAttribute('aria-pressed', 'true')
+      pauseBtn.textContent = 'Pause'
+    }
+
+    const togglePause = () => {
+      if (prefersReducedMotion()) return
+      if (isPlaying) stopAutoplay()
+      else startAutoplay()
+    }
+
+    const onPrev = () => {
+      if (pauseBtn) {
+        goToSlide((currentIndex - 1 + totalSlides) % totalSlides)
+      } else {
+        goToSlide(currentIndex - 1)
+      }
+    }
+
+    const onNext = () => {
+      if (pauseBtn) {
+        goToSlide((currentIndex + 1) % totalSlides)
+      } else {
+        goToSlide(currentIndex + 1)
+      }
+    }
+
+    const onFocusIn = (e: FocusEvent) => {
+      if (!pauseBtn) return
+      const related = e.relatedTarget as Node | null
+      const fromOutside = related === null || !carouselRoot.contains(related)
+      if (fromOutside) stopAutoplay()
+    }
+
+    const onMouseEnter = () => {
+      if (pauseBtn) stopAutoplay()
+    }
+
+    prev.addEventListener('click', onPrev)
+    next.addEventListener('click', onNext)
+    carouselRoot.addEventListener('focusin', onFocusIn as EventListener)
+    carouselRoot.addEventListener('mouseenter', onMouseEnter)
+
+    indicators.forEach((btn, i) => {
+      const onInd = () => goToSlide(i)
+      btn.addEventListener('click', onInd)
+      cleanupFns.push(() => btn.removeEventListener('click', onInd))
+    })
+
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', togglePause)
+    }
+
+    goToSlide(currentIndex)
+
+    if (pauseBtn && !prefersReducedMotion()) {
+      startAutoplay()
+    }
+
+    cleanupFns.push(() => {
+      prev.removeEventListener('click', onPrev)
+      next.removeEventListener('click', onNext)
+      carouselRoot.removeEventListener('focusin', onFocusIn as EventListener)
+      carouselRoot.removeEventListener('mouseenter', onMouseEnter)
+      if (pauseBtn) pauseBtn.removeEventListener('click', togglePause)
+      clearIntervalSafe()
+    })
+  })
+
+  return () => cleanupFns.forEach(fn => fn())
+}
+
 // Registry of all interaction handlers
 const interactionHandlers: InteractionHandler[] = [
   handleAccordions,
@@ -1185,6 +1346,7 @@ const interactionHandlers: InteractionHandler[] = [
   handleDataGrid,
   handleDatePicker,
   handleFormValidation,
+  handleCarousel,
 ]
 
 /**
