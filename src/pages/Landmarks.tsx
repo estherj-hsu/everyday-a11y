@@ -18,6 +18,17 @@ export default function Landmarks() {
       <section className="example">
         <h2>Core Page Landmarks</h2>
 
+        <p>
+          The core landmarks are
+          <code>&lt;header&gt;</code> (<code>banner</code>),
+          <code>&lt;nav&gt;</code> (<code>navigation</code>),
+          <code>&lt;main&gt;</code> (<code>main</code>),
+          <code>&lt;footer&gt;</code> (<code>contentinfo</code>),
+          <code>&lt;aside&gt;</code> (<code>complementary</code>), and <code>&lt;form role="search"&gt;</code> (<code>search</code>). Use the native HTML element whenever possible — the ARIA role is
+          listed here as reference only.
+        </p>
+
+        <h3>Rules</h3>
         <ul>
           <li>Use semantic HTML elements whenever possible.</li>
           <li>Use ARIA landmark roles only when semantic elements cannot be used.</li>
