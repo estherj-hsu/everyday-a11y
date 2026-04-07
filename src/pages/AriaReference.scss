@@ -3,12 +3,7 @@
 .aria-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: map-get($type-scale, small);
   margin-bottom: 1.5rem;
-
-  @media screen and (min-width: $breakpoint-desktop) {
-    font-size: map-get($type-scale-desktop, small);
-  }
 
   th,
   td {
@@ -19,12 +14,21 @@
   }
 
   thead th {
-    background: $paper-mist;
     font-weight: 700;
     color: $ink-deep;
   }
 
-  tbody tr:hover {
-    background: $paper-mist;
+  tbody {
+    tr:hover {
+      background: $paper-mist;
+    }
+
+    td {
+      font-size: map-get($type-scale, small);
+
+      @media screen and (min-width: $breakpoint-desktop) {
+        font-size: map-get($type-scale-desktop, small);
+      }
+    }
   }
 }
