@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import PageLayout from './components/PageLayout'
 import './App.scss'
-import './pages/DatePicker.scss'
 
 // Lazy load page components for code splitting
 const Home = lazy(() => import('./pages/Home'))

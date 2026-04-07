@@ -2,6 +2,13 @@
 
 // Form field group used in previews
 form {
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
   button {
     padding: 0.25rem 1rem;
     border-radius: 0.25rem;
@@ -127,6 +134,49 @@ form {
 // Custom select (button + listbox pattern)
 .cs-control {
   position: relative;
+
+  [role='listbox'] {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem;
+    background: $pure-white;
+    border: 2px solid $twilight-violet;
+    border-top: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+    max-height: 11rem;
+    overflow-y: auto;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  [role='listbox'] [role='option'] {
+    padding: 0.375rem 0.75rem;
+    cursor: default;
+    font-size: map-get($type-scale, small);
+
+    &:hover {
+      background: $paper-mist;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: -2px;
+      background: $paper-mist;
+    }
+
+    &[aria-selected='true'] {
+      background: rgba($twilight-violet, 0.1);
+      color: $twilight-violet;
+      font-weight: 600;
+    }
+  }
 }
 
 .cs-trigger {
@@ -172,49 +222,6 @@ form {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: map-get($type-scale, small);
-}
-
-[role="listbox"] {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  list-style: none;
-  margin: 0;
-  padding: 0.25rem;
-  background: $pure-white;
-  border: 2px solid $twilight-violet;
-  border-top: none;
-  border-radius: 0 0 0.25rem 0.25rem;
-  max-height: 11rem;
-  overflow-y: auto;
-
-  &[hidden] {
-    display: none;
-  }
-}
-
-[role="listbox"] [role="option"] {
-  padding: 0.375rem 0.75rem;
-  cursor: default;
-  font-size: map-get($type-scale, small);
-
-  &:hover {
-    background: $paper-mist;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $twilight-violet;
-    outline-offset: -2px;
-    background: $paper-mist;
-  }
-
-  &[aria-selected="true"] {
-    background: rgba($twilight-violet, 0.1);
-    color: $twilight-violet;
-    font-weight: 600;
-  }
 }
 
 .success {

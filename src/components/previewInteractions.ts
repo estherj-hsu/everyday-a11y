@@ -1100,6 +1100,20 @@ function handleFormValidation(container: HTMLElement): () => void {
     const summaryList = form.querySelector<HTMLElement>('[data-fv-summary-list]')
     if (!summary || !summaryHeading || !summaryList) return
 
+    const clearErrors = () => {
+      summary.setAttribute('hidden', '')
+      form.querySelectorAll<HTMLElement>('[data-fv-field]').forEach(fieldEl => {
+        const input = fieldEl.querySelector<HTMLInputElement>('input')
+        const errorEl = fieldEl.querySelector<HTMLElement>('[data-fv-error]')
+        if (!input || !errorEl) return
+        input.removeAttribute('aria-invalid')
+        input.removeAttribute('aria-describedby')
+        errorEl.setAttribute('hidden', '')
+      })
+      const successEl = form.querySelector<HTMLElement>('[data-fv-success]')
+      if (successEl) successEl.setAttribute('hidden', '')
+    }
+
     const handleSubmit = (e: Event) => {
       e.preventDefault()
 
@@ -1147,6 +1161,13 @@ function handleFormValidation(container: HTMLElement): () => void {
 
     form.addEventListener('submit', handleSubmit)
     cleanup.push(() => form.removeEventListener('submit', handleSubmit))
+
+    const resetBtn = form.querySelector<HTMLButtonElement>('[data-fv-reset]')
+    if (resetBtn) {
+      const onReset = () => clearErrors()
+      resetBtn.addEventListener('click', onReset)
+      cleanup.push(() => resetBtn.removeEventListener('click', onReset))
+    }
   })
 
   return () => cleanup.forEach(fn => fn())

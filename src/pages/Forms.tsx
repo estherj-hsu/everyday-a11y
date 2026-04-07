@@ -197,26 +197,36 @@ export default function Forms() {
           showPreview={false}
           showCopyBtn={false}
         />
-        <h3>Custom Checkboxes and Radio Buttons</h3>
+      </section>
+
+      <section className="example">
+        <h2>Custom Checkboxes and Radio Buttons</h2>
+
         <p>
           When native <code>&lt;input type="checkbox"&gt;</code> or <code>&lt;input type="radio"&gt;</code> cannot be used, the custom element must replicate their full behavior manually.
         </p>
+        <h3>Key Requirements</h3>
         <ul>
           <li>
-            Add the correct role: <code>role="checkbox"</code> or <code>role="radio"</code>.
+            The element must have <code>role="checkbox"</code> or <code>role="radio"</code>.
           </li>
           <li>
-            Manage <code>aria-checked</code> in JavaScript — set <code>true</code> or <code>false</code> on every state change. For a "select all" checkbox, use <code>"mixed"</code> when partially
-            selected.
+            <code>tabindex="0"</code> makes it keyboard focusable.
           </li>
           <li>
-            Add <code>tabindex="0"</code> to make it keyboard focusable.
+            Wrap the group in a <code>&lt;fieldset&gt;</code> with a <code>&lt;legend&gt;</code>, same as native inputs.
           </li>
-          <li>
-            Handle <kbd>Space</kbd> to toggle, and <kbd>↑</kbd> / <kbd>↓</kbd> to move between options in a radio group.
-          </li>
-          <li>Wrap the group in a fieldset with a legend, same as native inputs.</li>
         </ul>
+
+        <h3>Dev Notes</h3>
+        <p>
+          <code>aria-checked</code> must be managed in JavaScript and updated on every state change — <code>true</code>, <code>false</code>, or <code>"mixed"</code> for a partially selected
+          &quot;select all&quot; checkbox. Native <code>&lt;input type="checkbox"&gt;</code> handles this automatically; custom controls do not.
+        </p>
+        <p>
+          Keyboard behavior must also be implemented manually: <kbd>Space</kbd> to toggle a checkbox, <kbd>↑</kbd> / <kbd>↓</kbd> to move between options in a radio group. ARIA provides the semantics
+          but not the interaction.
+        </p>
         <CodeExample
           code={`<fieldset>
   <legend>Notification preferences</legend>
@@ -273,7 +283,7 @@ export default function Forms() {
   aria-invalid="true"
   aria-describedby="phone-err" />
 <span id="phone-err">Enter a phone number, e.g. +1 555 000 0000</span>`}
-          previewCode={`<p class="preview-hint text-small">💡 Submit with empty or invalid fields, then fix them and resubmit.</p>
+          previewCode={`<p class="preview-hint text-small">💡 Submit with empty or invalid fields, then fix them and resubmit. Reset clears error messages and the summary.</p>
 <form data-form-validation novalidate>
   <div data-fv-summary class="summary" role="alert" aria-labelledby="demo-err-heading" tabindex="-1" hidden>
     <h2 id="demo-err-heading" data-fv-summary-heading></h2>
@@ -299,7 +309,10 @@ export default function Forms() {
       Enter a phone number, e.g. +1 555 000 0000
     </span>
   </div>
-  <button type="submit">Submit</button>
+  <div class="form-actions">
+    <button type="submit">Submit</button>
+    <button type="button" data-fv-reset>Reset</button>
+  </div>
   <p data-fv-success class="success" aria-live="polite" hidden>✓ Submitted successfully.</p>
 </form>`}
           previewSize="equal"

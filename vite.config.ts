@@ -26,16 +26,8 @@ export default defineConfig(({ command }) => ({
             // Other node_modules go into a separate vendor chunk
             return 'vendor'
           }
-          // Group pattern pages together
-          if (id.includes('/pages/') && (
-            id.includes('Landmarks') ||
-            id.includes('ButtonsLinks') ||
-            id.includes('Forms') ||
-            id.includes('Accordions') ||
-            id.includes('Tabs') ||
-            id.includes('ModalDialog') ||
-            id.includes('Navigation')
-          )) {
+          // Group all route pages (and their co-located styles) into one async chunk
+          if (id.includes('/pages/')) {
             return 'patterns'
           }
         },

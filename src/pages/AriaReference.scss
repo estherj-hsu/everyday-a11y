@@ -28,32 +28,3 @@
     background: $paper-mist;
   }
 }
-
-.aria-dl {
-  margin-bottom: 1.5rem;
-
-  dt {
-    // font-weight: 600;
-    // font-size: map-get($type-scale, small);
-    // margin-top: 0.75rem;
-
-    // &:first-child {
-    //   margin-top: 0;
-    // }
-
-    // @media screen and (min-width: $breakpoint-desktop) {
-    //   font-size: map-get($type-scale-desktop, small);
-    // }
-  }
-
-  dd {
-    font-size: map-get($type-scale, small);
-    color: $storm-slate;
-    margin-left: 0;
-    margin-top: 0.2rem;
-
-    @media screen and (min-width: $breakpoint-desktop) {
-      font-size: map-get($type-scale-desktop, small);
-    }
-  }
-}
