@@ -121,6 +121,42 @@ button:focus-visible {
       </section>
 
       <section className="example">
+        <h2>Toggle Buttons</h2>
+        <p>
+          A toggle button switches between two states: on and off. Use <code>aria-pressed</code> to communicate the current state to screen readers. The visible label should stay the same in both
+          states; the state change is conveyed by <code>aria-pressed</code>, not by rewriting the label.
+        </p>
+        <p>
+          Use <code>aria-pressed</code> for binary mode switches: mute/unmute, bold/unbold, follow/unfollow. Do not use it for checkboxes or radio buttons — those use <code>aria-checked</code>.
+        </p>
+
+        <ul className="references">
+          <li>
+            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value">4.1.2 Name, Role, Value</a>
+          </li>
+          <li>
+            <strong>ARIA Spec</strong>{' '}
+            <a href="https://www.w3.org/TR/wai-aria/#aria-pressed" target="_blank" rel="noopener noreferrer" aria-label="WAI-ARIA aria-pressed (opens in a new tab)">
+              aria-pressed
+            </a>
+          </li>
+        </ul>
+
+        <CodeExample
+          code={`<button aria-pressed="false" onclick="toggle(this)">Mute</button>
+
+<script>
+  function toggle(btn) {
+    const pressed = btn.getAttribute('aria-pressed') === 'true'
+    btn.setAttribute('aria-pressed', String(!pressed))
+  }
+</script>`}
+          showPreview={false}
+          showCopyBtn={false}
+        />
+      </section>
+
+      <section className="example">
         <h2>Common Cases</h2>
 
         <h3>Case: “Read more” Links in Card Layouts</h3>
@@ -201,6 +237,7 @@ button:focus-visible {
           <li>Focus styles are visible and intentional.</li>
           <li>Links that open new tabs communicate this change.</li>
           <li>Icon-only controls have accessible names.</li>
+          <li>Toggle buttons use <code>aria-pressed</code> and update it on every activation.</li>
         </ul>
       </section>
     </div>

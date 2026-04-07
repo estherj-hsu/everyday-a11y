@@ -20,6 +20,7 @@ const LiveRegion = lazy(() => import('./pages/LiveRegion'))
 const DataGrid = lazy(() => import('./pages/DataGrid'))
 const DatePicker = lazy(() => import('./pages/DatePicker'))
 const CheckFix = lazy(() => import('./pages/CheckFix'))
+const AriaReference = lazy(() => import('./pages/AriaReference'))
 
 function App() {
   return (
@@ -143,6 +144,14 @@ function App() {
           element={
             <PageLayout>
               <DatePicker />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/foundations/aria"
+          element={
+            <PageLayout>
+              <AriaReference />
             </PageLayout>
           }
         />

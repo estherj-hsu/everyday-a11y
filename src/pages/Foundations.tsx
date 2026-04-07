@@ -79,6 +79,9 @@ export default function Foundations() {
           ARIA exists to fill semantic gaps HTML cannot express on its own. It should never be used to fix broken semantics. Incorrect ARIA can actively make interfaces harder to use with assistive
           technologies.
         </p>
+        <a className="btn" href="/foundations/aria">
+          See ARIA reference
+        </a>
         <ul className="references">
           <li>
             <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value">4.1.2 Name, Role, Value</a>
@@ -109,7 +112,7 @@ export default function Foundations() {
           <li>
             <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">1.3.1 Info and Relationships</a>;{' '}
             <a href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels">2.4.6 Headings and Labels</a>;{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/section-headings">2.4.10 Section Headings</a>{' '}(AAA)
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/section-headings">2.4.10 Section Headings</a> (AAA)
           </li>
           <li>
             <strong>Techniques</strong> <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G130">G130</a>, <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G141">G141</a>,{' '}
@@ -125,9 +128,7 @@ export default function Foundations() {
         <p>
           <mark>Color alone is never enough.</mark>
         </p>
-        <p>
-          Anywhere color conveys information (error states, required fields, chart categories) a secondary indicator is required: text, an icon, a pattern, or a shape.
-        </p>
+        <p>Anywhere color conveys information (error states, required fields, chart categories) a secondary indicator is required: text, an icon, a pattern, or a shape.</p>
         <p>
           Text contrast must meet <strong>4.5:1 for normal text</strong> and <strong>3:1 for large text (18pt or 14pt bold)</strong> against its background. UI components and graphical elements that
           convey meaning, such as input borders, focus indicators, chart lines, and button outlines, need at least <strong>3:1</strong> against adjacent colors.
@@ -183,8 +184,8 @@ export default function Foundations() {
         <ul className="references">
           <li>
             <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible">2.4.7 Focus Visible</a>;{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum">2.4.11 Focus Not Obscured</a>{' '}(AA);{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced">2.4.12 Focus Not Obscured</a>{' '}(AAA);{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum">2.4.11 Focus Not Obscured</a> (AA);{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-enhanced">2.4.12 Focus Not Obscured</a> (AAA);{' '}
             <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance">2.4.13 Focus Appearance</a>
           </li>
           <li>
@@ -223,8 +224,8 @@ export default function Foundations() {
         </p>
         <ul className="references">
           <li>
-            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG21/Understanding/target-size">2.5.5 Target Size</a>{' '}(AAA);{' '}
-            <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum">2.5.8 Target Size</a>{' '}(AA)
+            <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG21/Understanding/target-size">2.5.5 Target Size</a> (AAA);{' '}
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum">2.5.8 Target Size</a> (AA)
           </li>
           <li>
             <strong>Techniques</strong> <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G207">G207</a>

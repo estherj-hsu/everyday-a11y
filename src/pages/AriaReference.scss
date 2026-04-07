@@ -1,0 +1,59 @@
+@use "../styles/variables" as *;
+
+.aria-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: map-get($type-scale, small);
+  margin-bottom: 1.5rem;
+
+  @media screen and (min-width: $breakpoint-desktop) {
+    font-size: map-get($type-scale-desktop, small);
+  }
+
+  th,
+  td {
+    padding: 0.625rem 0.75rem;
+    text-align: left;
+    border: 1px solid $fog-silver;
+    vertical-align: top;
+  }
+
+  thead th {
+    background: $paper-mist;
+    font-weight: 700;
+    color: $ink-deep;
+  }
+
+  tbody tr:hover {
+    background: $paper-mist;
+  }
+}
+
+.aria-dl {
+  margin-bottom: 1.5rem;
+
+  dt {
+    // font-weight: 600;
+    // font-size: map-get($type-scale, small);
+    // margin-top: 0.75rem;
+
+    // &:first-child {
+    //   margin-top: 0;
+    // }
+
+    // @media screen and (min-width: $breakpoint-desktop) {
+    //   font-size: map-get($type-scale-desktop, small);
+    // }
+  }
+
+  dd {
+    font-size: map-get($type-scale, small);
+    color: $storm-slate;
+    margin-left: 0;
+    margin-top: 0.2rem;
+
+    @media screen and (min-width: $breakpoint-desktop) {
+      font-size: map-get($type-scale-desktop, small);
+    }
+  }
+}

@@ -197,6 +197,48 @@ export default function Forms() {
           showPreview={false}
           showCopyBtn={false}
         />
+        <h3>Custom Checkboxes and Radio Buttons</h3>
+        <p>
+          When native <code>&lt;input type="checkbox"&gt;</code> or <code>&lt;input type="radio"&gt;</code> cannot be used, the custom element must replicate their full behavior manually.
+        </p>
+        <ul>
+          <li>
+            Add the correct role: <code>role="checkbox"</code> or <code>role="radio"</code>.
+          </li>
+          <li>
+            Manage <code>aria-checked</code> in JavaScript — set <code>true</code> or <code>false</code> on every state change. For a "select all" checkbox, use <code>"mixed"</code> when partially
+            selected.
+          </li>
+          <li>
+            Add <code>tabindex="0"</code> to make it keyboard focusable.
+          </li>
+          <li>
+            Handle <kbd>Space</kbd> to toggle, and <kbd>↑</kbd> / <kbd>↓</kbd> to move between options in a radio group.
+          </li>
+          <li>Wrap the group in a fieldset with a legend, same as native inputs.</li>
+        </ul>
+        <CodeExample
+          code={`<fieldset>
+  <legend>Notification preferences</legend>
+  <div role="checkbox" aria-checked="false" tabindex="0"
+    onkeydown="if(e.key===' ')toggleCheck(this)">
+    Email
+  </div>
+  <div role="checkbox" aria-checked="true" tabindex="0"
+    onkeydown="if(e.key===' ')toggleCheck(this)">
+    SMS
+  </div>
+</fieldset>
+
+<script>
+  function toggleCheck(el) {
+    const checked = el.getAttribute('aria-checked') === 'true'
+    el.setAttribute('aria-checked', String(!checked))
+  }
+</script>`}
+          showPreview={false}
+          showCopyBtn={false}
+        />
       </section>
 
       <section className="example">
