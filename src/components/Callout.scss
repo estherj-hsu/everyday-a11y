@@ -1,0 +1,77 @@
+@use "../styles/variables" as *;
+
+@mixin callout-icon-mask($url) {
+  mask-image: url($url);
+  -webkit-mask-image: url($url);
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+}
+
+.callout {
+  margin: 1rem 0;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid;
+  border-radius: 0 4px 4px 0;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: fit-content;
+  max-width: 100%;
+
+  .callout-icon {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.0625rem;
+  }
+
+  .callout-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: map-get($type-scale, small);
+
+    @media screen and (min-width: $breakpoint-desktop) {
+      font-size: map-get($type-scale-desktop, small);
+    }
+  }
+
+  a {
+    color: inherit;
+    font-weight: 600;
+  }
+
+  &--info {
+    border-color: $harbor-blue;
+    background: mix($paper-mist, $harbor-blue, 92%);
+    color: $ink-deep;
+
+    .callout-icon {
+      @include callout-icon-mask("/assets/icon-info.svg");
+      background-color: $harbor-blue;
+    }
+  }
+
+  &--warning {
+    border-color: $golden-yolk;
+    background: mix($paper-mist, $golden-yolk, 88%);
+    color: $ink-deep;
+
+    .callout-icon {
+      @include callout-icon-mask("/assets/icon-alert.svg");
+      background-color: $storm-slate;
+    }
+  }
+}

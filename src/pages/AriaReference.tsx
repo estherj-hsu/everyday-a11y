@@ -1,4 +1,5 @@
 import './AriaReference.scss'
+import Callout from '../components/Callout'
 import CodeExample from '../components/CodeExample'
 
 export default function AriaReference() {
@@ -72,7 +73,10 @@ export default function AriaReference() {
                 <code>role="list"</code>
               </td>
               <td>
-                Safari + VoiceOver removes list semantics when <code>list-style</code> is removed in CSS
+                Unstyled lists may lose list semantics in Safari + VoiceOver; use <code>role="list"</code> to restore.{' '}
+                <a href="#note-unstyled-lists-safari" className="callout-link" aria-label="Extended note: Safari, VoiceOver, and unstyled lists">
+                  <span className="callout-link-icon" aria-hidden="true" />
+                </a>
               </td>
               <td></td>
             </tr>
@@ -191,6 +195,23 @@ export default function AriaReference() {
           </tbody>
         </table>
 
+        <Callout id="note-unstyled-lists-safari" variant="warning">
+          <h3 className="h4">Safari + VoiceOver and unstyled lists</h3>
+          <p>
+            WebKit intentionally removes list semantics from <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> when <code>list-style: none</code> (or any CSS that removes list markers) is applied.
+            The reasoning: most developers remove list styles purely for visual purposes, not because the element is a meaningful list. The result is that VoiceOver stops announcing the list role and
+            item count.
+          </p>
+          <p>
+            Add <code>role="list"</code> to restore semantics when the list is genuinely structural. Exception: lists inside <code>&lt;nav&gt;</code> retain semantics in Safari regardless of styling
+            (as of 2023). <br />
+            Reference:{' '}
+            <a href="https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html" target="_blank" rel="noopener noreferrer">
+              &quot;Fixing&quot; Lists — Scott O&apos;Hara
+            </a>
+          </p>
+        </Callout>
+
         <ul className="references">
           <li>
             <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value">4.1.2 Name, Role, Value</a>;{' '}
@@ -211,8 +232,8 @@ export default function AriaReference() {
 
         <h3>aria-expanded</h3>
         <p>
-          Signals whether a collapsible region is open or closed. Set on the trigger element, not the panel. See{' '}
-          <a href="/patterns/accordions">Accordions</a> and <a href="/patterns/navigation">Navigation</a> for implementation examples.
+          Signals whether a collapsible region is open or closed. Set on the trigger element, not the panel. See <a href="/patterns/accordions">Accordions</a> and{' '}
+          <a href="/patterns/navigation">Navigation</a> for implementation examples.
         </p>
 
         <h3>aria-selected</h3>
@@ -224,8 +245,8 @@ export default function AriaReference() {
         <h3>aria-checked</h3>
         <p>
           Checked state for custom checkbox and radio implementations. Native <code>&lt;input type="checkbox"&gt;</code> manages this automatically; only needed for custom controls. The third value,{' '}
-          <code>"mixed"</code>, represents an indeterminate state — most commonly a "select all" checkbox where some but not all items in a group are selected. See{' '}
-          <a href="/patterns/forms">Forms</a> for custom field examples.
+          <code>"mixed"</code>, represents an indeterminate state — most commonly a "select all" checkbox where some but not all items in a group are selected. See <a href="/patterns/forms">Forms</a>{' '}
+          for custom field examples.
         </p>
         <CodeExample
           code={`<div role="checkbox" aria-checked="false" tabindex="0">Accept terms</div>
@@ -260,8 +281,8 @@ export default function AriaReference() {
 
         <h3>aria-hidden</h3>
         <p>
-          Removes an element from the accessibility tree entirely. Use for decorative icons, presentational images, or text that duplicates an already-announced label. Never place on a focusable element
-          — it stays in the tab order but the screen reader has nothing to announce. See <a href="/patterns/buttons-links">Buttons &amp; Links</a> for icon button examples.
+          Removes an element from the accessibility tree entirely. Use for decorative icons, presentational images, or text that duplicates an already-announced label. Never place on a focusable
+          element — it stays in the tab order but the screen reader has nothing to announce. See <a href="/patterns/buttons-links">Buttons &amp; Links</a> for icon button examples.
         </p>
 
         <h3>aria-live</h3>
@@ -281,8 +302,8 @@ export default function AriaReference() {
 
         <h3>aria-label</h3>
         <p>
-          Provides an accessible name as a plain string. Overrides all other name sources including child text content. Use only when no visible label exists. If visible text is present, the label must
-          start with that text — voice control users activate elements by speaking what they see. See <a href="/patterns/buttons-links">Buttons &amp; Links</a>.
+          Provides an accessible name as a plain string. Overrides all other name sources including child text content. Use only when no visible label exists. If visible text is present, the label
+          must start with that text — voice control users activate elements by speaking what they see. See <a href="/patterns/buttons-links">Buttons &amp; Links</a>.
         </p>
 
         <h3>aria-labelledby</h3>
@@ -311,15 +332,15 @@ export default function AriaReference() {
 
         <h3>aria-controls</h3>
         <p>
-          References the element a control affects. Used in <a href="/patterns/tabs">Tabs</a> and <a href="/patterns/accordions">Accordions</a> to associate a trigger with its panel. Browser and screen
-          reader support is inconsistent — treat it as supplementary context, not a primary labeling mechanism.
+          References the element a control affects. Used in <a href="/patterns/tabs">Tabs</a> and <a href="/patterns/accordions">Accordions</a> to associate a trigger with its panel. Browser and
+          screen reader support is inconsistent — treat it as supplementary context, not a primary labeling mechanism.
         </p>
 
         <h3>aria-required and aria-invalid</h3>
         <p>
-          <code>aria-required</code> signals a mandatory field. Prefer the native <code>required</code> attribute — it triggers built-in browser validation automatically.{' '}
-          <code>aria-invalid</code> marks a field that has failed validation; set it only after the user has submitted or left the field, not on page load. Always pair with{' '}
-          <code>aria-describedby</code> pointing to the visible error message. See <a href="/patterns/forms">Forms</a>.
+          <code>aria-required</code> signals a mandatory field. Prefer the native <code>required</code> attribute — it triggers built-in browser validation automatically. <code>aria-invalid</code>{' '}
+          marks a field that has failed validation; set it only after the user has submitted or left the field, not on page load. Always pair with <code>aria-describedby</code> pointing to the visible
+          error message. See <a href="/patterns/forms">Forms</a>.
         </p>
 
         <ul className="references">
@@ -381,8 +402,8 @@ export default function AriaReference() {
 
         <h3>aria-label that does not start with the visible text</h3>
         <p>
-          Voice control users activate elements by speaking what they see. If <code>aria-label</code> does not start with the visible text, saying the visible label will not match the element.
-          For icon-only buttons and other labeling cases, see <a href="/patterns/buttons-links">Buttons &amp; Links</a>.
+          Voice control users activate elements by speaking what they see. If <code>aria-label</code> does not start with the visible text, saying the visible label will not match the element. For
+          icon-only buttons and other labeling cases, see <a href="/patterns/buttons-links">Buttons &amp; Links</a>.
         </p>
         <CodeExample
           code={`❌ <button aria-label="Submit the registration form">Send</button>
