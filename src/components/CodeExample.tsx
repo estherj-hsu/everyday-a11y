@@ -108,7 +108,7 @@ export default function CodeExample({ code, language = 'html', previewCode, show
               <button type="button" id={codeToggleId} className="code-example-accordion-toggle" aria-expanded={codeExpanded} aria-controls={codeRegionId} onClick={() => setCodeExpanded(e => !e)}>
                 <span className="text-small">Code: {language}</span>
                 <span className="code-example-accordion-icon" aria-hidden>
-                  <img src="/assets/icon-chevron.svg" alt="" width={16} height={16} decoding="async" className="code-example-accordion-chevron" />
+                  <span className="code-example-accordion-chevron" />
                 </span>
               </button>
               {showCopyBtn && (

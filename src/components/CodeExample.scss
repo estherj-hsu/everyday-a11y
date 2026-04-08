@@ -177,13 +177,23 @@
   line-height: 0;
 }
 
+/* Right-pointing chevron (two borders); rotates to “down” when expanded */
 .code-example-accordion-chevron {
-  display: block;
+  box-sizing: border-box;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  border-color: currentColor;
+  transform: rotate(-45deg);
   transition: transform 0.15s ease;
+  vertical-align: middle;
 }
 
-.code-example-accordion-toggle[aria-expanded="true"] .code-example-accordion-chevron {
-  transform: rotate(90deg);
+.code-example-accordion-toggle[aria-expanded='true'] .code-example-accordion-chevron {
+  transform: rotate(45deg);
 }
 
 .code-example-copy {
