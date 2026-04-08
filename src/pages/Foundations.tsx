@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import CodeExample from '../components/CodeExample'
 import './Foundations.scss'
 
@@ -79,9 +80,9 @@ export default function Foundations() {
           ARIA exists to fill semantic gaps HTML cannot express on its own. It should never be used to fix broken semantics. Incorrect ARIA can actively make interfaces harder to use with assistive
           technologies.
         </p>
-        <a className="btn" href="/foundations/aria">
+        <Link className="btn" to="/foundations/aria">
           See ARIA reference
-        </a>
+        </Link>
         <ul className="references">
           <li>
             <strong>WCAG</strong> <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value">4.1.2 Name, Role, Value</a>
