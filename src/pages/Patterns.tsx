@@ -79,6 +79,12 @@ export default function Patterns() {
           </h2>
           <p className="text-small">Rotating content that doesn&apos;t leave users behind.</p>
         </div>
+        <div className="card">
+          <h2 className="h3">
+            <Link to="/patterns/image-gallery">Image Gallery</Link>
+          </h2>
+          <p className="text-small">A grid of images that opens each one in a focusable dialog.</p>
+        </div>
       </div>
     </div>
   )
