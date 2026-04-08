@@ -1,5 +1,27 @@
+import { useLayoutEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './PageLayout.scss'
+
+const DEFAULT_DOCUMENT_TITLE = 'Everyday Accessibility | Practical Web Accessibility for Makers'
+const SITE_TITLE_SUFFIX = 'Everyday Accessibility'
+
+function titleFromPageH1(h1: HTMLElement): string {
+  const aria = h1.getAttribute('aria-label')?.trim()
+  if (aria) return aria
+  return h1.textContent?.trim() ?? ''
+}
+
+function buildDocumentTitle(pathname: string, pageTitle: string): string {
+  if (!pageTitle) return DEFAULT_DOCUMENT_TITLE
+
+  if (pathname.startsWith('/patterns/')) {
+    return `Patterns: ${pageTitle} | ${SITE_TITLE_SUFFIX}`
+  }
+  if (pathname.startsWith('/foundations/')) {
+    return `Foundations: ${pageTitle} | ${SITE_TITLE_SUFFIX}`
+  }
+  return `${pageTitle} | ${SITE_TITLE_SUFFIX}`
+}
 
 interface PageLayoutProps {
   children: React.ReactNode
@@ -8,7 +30,19 @@ interface PageLayoutProps {
 
 export default function PageLayout({ children, showNav = true }: PageLayoutProps) {
   const location = useLocation()
+  const mainRef = useRef<HTMLElement>(null)
   const currentPath = location.pathname
+
+  useLayoutEffect(() => {
+    if (currentPath === '/') {
+      document.title = DEFAULT_DOCUMENT_TITLE
+      return
+    }
+
+    const h1 = mainRef.current?.querySelector('h1')
+    const pageTitle = h1 ? titleFromPageH1(h1) : ''
+    document.title = buildDocumentTitle(currentPath, pageTitle)
+  }, [currentPath])
   const hasParent = currentPath.startsWith('/patterns/')
 
   const navItems = [
@@ -60,7 +94,7 @@ export default function PageLayout({ children, showNav = true }: PageLayoutProps
           </nav>
         </header>
       )}
-      <main className="content">
+      <main ref={mainRef} className="content">
         {hasParent && (
           <Link to={currentPath.split('/').slice(0, -1).join('/')} className="back-link">
             Back to Patterns
