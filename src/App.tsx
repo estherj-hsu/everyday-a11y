@@ -19,6 +19,7 @@ const LiveRegion = lazy(() => import('./pages/LiveRegion'))
 const DataGrid = lazy(() => import('./pages/DataGrid'))
 const DatePicker = lazy(() => import('./pages/DatePicker'))
 const Carousel = lazy(() => import('./pages/Carousel'))
+const ImageGallery = lazy(() => import('./pages/ImageGallery'))
 const CheckFix = lazy(() => import('./pages/CheckFix'))
 const AriaReference = lazy(() => import('./pages/AriaReference'))
 
@@ -152,6 +153,14 @@ function App() {
           element={
             <PageLayout>
               <Carousel />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/patterns/image-gallery"
+          element={
+            <PageLayout>
+              <ImageGallery />
             </PageLayout>
           }
         />

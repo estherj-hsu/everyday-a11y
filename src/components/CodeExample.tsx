@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { getHighlighter, type Highlighter } from 'shiki'
 import { everydayA11yTheme } from './custom-theme'
 import { setupPreviewInteractions } from './previewInteractions'
@@ -11,6 +11,8 @@ interface CodeExampleProps {
   showPreview?: boolean
   previewSize?: 'equal' | 'narrow' // 'equal' = 1fr 1fr (default), 'narrow' = 2fr 1fr
   showCopyBtn?: boolean // Whether to show the copy button (default: true)
+  layout?: 'split' | 'vertical'
+  codeDefaultExpanded?: boolean
 }
 
 // Cache the highlighter instance globally
@@ -26,11 +28,15 @@ function getHighlighterInstance(): Promise<Highlighter> {
   return highlighterPromise
 }
 
-export default function CodeExample({ code, language = 'html', previewCode, showPreview = true, previewSize = 'equal', showCopyBtn = true }: CodeExampleProps) {
+export default function CodeExample({ code, language = 'html', previewCode, showPreview = true, previewSize = 'equal', showCopyBtn = true, layout = 'split', codeDefaultExpanded }: CodeExampleProps) {
   const [highlightedCode, setHighlightedCode] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
   const [copied, setCopied] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
+  const isVertical = layout === 'vertical'
+  const [codeExpanded, setCodeExpanded] = useState(() => (isVertical ? codeDefaultExpanded === true : true))
+  const codeRegionId = useId()
+  const codeToggleId = useId()
 
   // Use previewCode if provided, otherwise use the main code
   const previewHtml = previewCode ?? code
@@ -85,18 +91,52 @@ export default function CodeExample({ code, language = 'html', previewCode, show
     }
   }
 
+  const layoutClass = [
+    isVertical && 'code-example--layout-vertical',
+    isVertical && !codeExpanded && 'code-example--code-collapsed',
+    !isVertical && showPreview && `code-example--preview-${previewSize}`,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div className={`code-example ${showPreview ? `code-example--preview-${previewSize}` : ''}`}>
+    <div className={`code-example ${layoutClass}`.trim()}>
       <div className="code-example-code">
-        <div className="code-example-header">
-          <span className="text-small">Code: {language}</span>
-          {showCopyBtn && (
-            <button type="button" className="code-example-copy" onClick={handleCopy} aria-label={copied ? 'Copied!' : 'Copy code'}>
-              {copied ? 'Copied!' : 'Copy'}
-            </button>
+        <div className={`code-example-header${isVertical ? ' code-example-header--accordion' : ''}`}>
+          {isVertical ? (
+            <>
+              <button type="button" id={codeToggleId} className="code-example-accordion-toggle" aria-expanded={codeExpanded} aria-controls={codeRegionId} onClick={() => setCodeExpanded(e => !e)}>
+                <span className="text-small">Code: {language}</span>
+                <span className="code-example-accordion-icon" aria-hidden>
+                  <img src="/assets/icon-chevron.svg" alt="" width={16} height={16} decoding="async" className="code-example-accordion-chevron" />
+                </span>
+              </button>
+              {showCopyBtn && (
+                <button type="button" className="code-example-copy" onClick={handleCopy} aria-label={copied ? 'Copied!' : 'Copy code'}>
+                  {copied ? 'Copied!' : 'Copy'}
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              <span className="text-small">Code: {language}</span>
+              {showCopyBtn && (
+                <button type="button" className="code-example-copy" onClick={handleCopy} aria-label={copied ? 'Copied!' : 'Copy code'}>
+                  {copied ? 'Copied!' : 'Copy'}
+                </button>
+              )}
+            </>
           )}
         </div>
-        {isLoading ? <div className="code-example-loading">Loading...</div> : <div className="code-example-content" dangerouslySetInnerHTML={{ __html: highlightedCode }} />}
+        <div
+          id={isVertical ? codeRegionId : undefined}
+          role={isVertical ? 'region' : undefined}
+          aria-labelledby={isVertical ? codeToggleId : undefined}
+          className="code-example-code-body"
+          hidden={isVertical && !codeExpanded}
+        >
+          {isLoading ? <div className="code-example-loading">Loading...</div> : <div className="code-example-content" dangerouslySetInnerHTML={{ __html: highlightedCode }} />}
+        </div>
       </div>
       {showPreview && (
         <div className="code-example-preview">

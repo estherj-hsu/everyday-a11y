@@ -48,5 +48,48 @@ export const everydayA11yTheme: ThemeRegistration = {
         foreground: '#574b90', // $twilight-violet
       },
     },
+    // JavaScript
+    {
+      scope: ['keyword.control', 'keyword.operator.new', 'keyword.operator.expression', 'storage.type', 'storage.modifier'],
+      settings: {
+        foreground: '#c34468', // $berry-ink
+      },
+    },
+    {
+      scope: ['variable.language'],
+      settings: {
+        foreground: '#c34468', // $berry-ink — this, super, etc.
+      },
+    },
+    {
+      scope: ['keyword.operator', 'keyword.operator.assignment', 'keyword.operator.relational', 'keyword.operator.arithmetic', 'keyword.operator.logical', 'punctuation.terminator.statement'],
+      settings: {
+        foreground: '#4a555f', // $storm-slate
+      },
+    },
+    {
+      scope: ['string', 'string.template'],
+      settings: {
+        foreground: '#574b90', // $twilight-violet
+      },
+    },
+    {
+      scope: ['constant.language', 'constant.numeric', 'constant.language.boolean', 'constant.language.undefined', 'constant.language.null'],
+      settings: {
+        foreground: '#005f63', // $oxide-teal
+      },
+    },
+    {
+      scope: ['entity.name.function', 'entity.name.class', 'support.function', 'support.class', 'support.type.primitive', 'support.type.builtin'],
+      settings: {
+        foreground: '#2f5681', // $harbor-blue
+      },
+    },
+    {
+      scope: ['variable.other.readwrite', 'variable.other.constant', 'variable.other.property', 'variable.parameter', 'meta.object-literal.key'],
+      settings: {
+        foreground: '#15212e', // $ink-deep
+      },
+    },
   ],
 }

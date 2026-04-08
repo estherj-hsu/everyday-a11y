@@ -1334,6 +1334,93 @@ function handleCarousel(container: HTMLElement): () => void {
   return () => cleanupFns.forEach(fn => fn())
 }
 
+// Image gallery + lightbox (native dialog)
+function handleImageGallery(container: HTMLElement): () => void {
+  const cleanup: Array<() => void> = []
+
+  container.querySelectorAll<HTMLElement>('[data-image-gallery]').forEach(galleryRoot => {
+    const dialog = galleryRoot.querySelector<HTMLDialogElement>('dialog')
+    if (!dialog) return
+
+    const titleEl = dialog.querySelector<HTMLElement>('[data-image-gallery-title]')
+    const dialogImg = dialog.querySelector<HTMLElement>('.image-gallery-dialog-img')
+    const captionEl = dialog.querySelector<HTMLElement>('.image-gallery-dialog-caption')
+    const liveEl = dialog.querySelector<HTMLElement>('.image-gallery-live')
+    const gridButtons = Array.from(galleryRoot.querySelectorAll<HTMLButtonElement>('button[data-image-index]'))
+    const total = gridButtons.length
+    if (total === 0) return
+
+    let triggerButton: HTMLButtonElement | null = null
+    let currentIndex = 0
+
+    const getAlt = (btn: HTMLButtonElement) => btn.getAttribute('data-image-alt')?.trim() || btn.querySelector('.visually-hidden')?.textContent?.trim() || ''
+
+    const getCaption = (btn: HTMLButtonElement) => btn.getAttribute('data-image-caption')?.trim() || getAlt(btn)
+
+    const applySlide = (index: number) => {
+      const i = ((index % total) + total) % total
+      currentIndex = i
+      const btn = gridButtons[i]
+      const alt = getAlt(btn)
+      const caption = getCaption(btn)
+
+      if (titleEl) titleEl.textContent = alt
+      if (dialogImg) {
+        dialogImg.setAttribute('aria-label', alt)
+        dialogImg.textContent = alt
+      }
+      if (captionEl) captionEl.textContent = caption
+      if (liveEl) liveEl.textContent = `Image ${i + 1} of ${total}`
+    }
+
+    const handleGridClick = (e: MouseEvent) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-image-index]')
+      if (!btn || !galleryRoot.contains(btn)) return
+      triggerButton = btn
+      const idx = parseInt(btn.getAttribute('data-image-index') ?? '0', 10)
+      applySlide(idx)
+      dialog.showModal()
+    }
+
+    const onPrev = () => {
+      applySlide(currentIndex - 1)
+    }
+
+    const onNext = () => {
+      applySlide(currentIndex + 1)
+    }
+
+    const onDismissClick = () => {
+      dialog.close()
+    }
+
+    const onDialogClose = () => {
+      triggerButton?.focus()
+    }
+
+    galleryRoot.addEventListener('click', handleGridClick)
+    dialog.addEventListener('close', onDialogClose)
+
+    const prevBtn = dialog.querySelector<HTMLButtonElement>('.dialog-prev')
+    const nextBtn = dialog.querySelector<HTMLButtonElement>('.dialog-next')
+    const dismissBtn = dialog.querySelector<HTMLButtonElement>('.dialog-dismiss')
+
+    prevBtn?.addEventListener('click', onPrev)
+    nextBtn?.addEventListener('click', onNext)
+    dismissBtn?.addEventListener('click', onDismissClick)
+
+    cleanup.push(() => {
+      galleryRoot.removeEventListener('click', handleGridClick)
+      dialog.removeEventListener('close', onDialogClose)
+      prevBtn?.removeEventListener('click', onPrev)
+      nextBtn?.removeEventListener('click', onNext)
+      dismissBtn?.removeEventListener('click', onDismissClick)
+    })
+  })
+
+  return () => cleanup.forEach(fn => fn())
+}
+
 // Registry of all interaction handlers
 const interactionHandlers: InteractionHandler[] = [
   handleAccordions,
@@ -1347,6 +1434,7 @@ const interactionHandlers: InteractionHandler[] = [
   handleDatePicker,
   handleFormValidation,
   handleCarousel,
+  handleImageGallery,
 ]
 
 /**

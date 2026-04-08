@@ -1,0 +1,178 @@
+@use "../styles/variables" as *;
+@use "../styles/links" as *;
+
+.image-gallery {
+  .image-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .image-gallery-grid > li {
+    margin: 0;
+  }
+
+  .image-gallery-item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: 2px;
+    }
+  }
+
+  .image-gallery-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    padding: 0.5rem;
+    border: 1px solid $fog-silver;
+    border-radius: 4px;
+    background: $paper-mist;
+    color: $ink-deep;
+    font-size: map-get($type-scale, small);
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+
+    &:hover {
+      background: $pure-white;
+    }
+  }
+
+  $thumb-colors: (
+    (
+      color: $harbor-blue,
+      ratio: 85%
+    ),
+    (
+      color: $golden-yolk,
+      ratio: 80%
+    ),
+    (
+      color: $oxide-teal,
+      ratio: 85%
+    ),
+    (
+      color: $twilight-violet,
+      ratio: 85%
+    ),
+    (
+      color: $berry-ink,
+      ratio: 85%
+    ),
+    (
+      color: $fog-silver,
+      ratio: 88%
+    )
+  );
+
+  @for $i from 1 through length($thumb-colors) {
+    $thumb: nth($thumb-colors, $i);
+
+    .image-gallery-thumb--#{$i} {
+      background: mix($paper-mist, map-get($thumb, color), map-get($thumb, ratio));
+    }
+  }
+
+  // Closed <dialog> relies on UA `display: none`. Unconditional `display: flex` overrides that and
+  // leaves the lightbox visible before open — only apply flex layout when open.
+  .image-gallery-dialog[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .image-gallery-dialog {
+    max-width: min(36rem, 100vw - 2rem);
+    min-width: 42%;
+    padding: 1rem 1.25rem;
+    border: 1px solid $fog-silver;
+    border-radius: 8px;
+    background: $pure-white;
+    color: $ink-deep;
+  }
+
+  .image-gallery-dialog::backdrop {
+    background: rgba($ink-deep, 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  .image-gallery-dialog-img {
+    width: 100%;
+    min-height: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid $fog-silver;
+    border-radius: 6px;
+    background: $paper-mist;
+    color: $storm-slate;
+    font-size: map-get($type-scale, small);
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .image-gallery-dialog-caption {
+    margin: 0;
+    font-size: map-get($type-scale, body);
+    color: $storm-slate;
+  }
+
+  .image-gallery-live {
+    margin: 0;
+    font-size: map-get($type-scale, small);
+    color: $storm-slate;
+  }
+
+  .image-gallery-dialog-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dialog-prev,
+  .dialog-next,
+  .dialog-dismiss {
+    font: inherit;
+    font-size: map-get($type-scale, small);
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid $fog-silver;
+    border-radius: 4px;
+    background: $pure-white;
+    color: $ink-deep;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $twilight-violet;
+      outline-offset: 2px;
+    }
+
+    &:hover {
+      border-color: $twilight-violet;
+      color: $twilight-violet;
+    }
+  }
+
+  .dialog-dismiss {
+    align-self: flex-end;
+  }
+}
