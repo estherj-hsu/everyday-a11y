@@ -1195,17 +1195,18 @@ function handleCarousel(container: HTMLElement): () => void {
 
     const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    const updateButtonLabels = () => {
-      if (pauseBtn) {
-        prev.setAttribute('aria-label', 'Previous slide')
-        next.setAttribute('aria-label', 'Next slide')
-        return
-      }
+    const updateControlButtons = () => {
+      const atStart = currentIndex === 0
+      const atEnd = currentIndex === totalSlides - 1
       const y = totalSlides
-      if (currentIndex === 0) {
+
+      prev.disabled = atStart
+      next.disabled = atEnd
+
+      if (atStart) {
         prev.setAttribute('aria-label', `Previous slide, currently on slide 1 of ${y}`)
         next.setAttribute('aria-label', 'Next slide')
-      } else if (currentIndex === totalSlides - 1) {
+      } else if (atEnd) {
         prev.setAttribute('aria-label', 'Previous slide')
         next.setAttribute('aria-label', `Next slide, currently on slide ${y} of ${y}`)
       } else {
@@ -1232,7 +1233,7 @@ function handleCarousel(container: HTMLElement): () => void {
           btn.removeAttribute('aria-current')
         }
       })
-      updateButtonLabels()
+      updateControlButtons()
     }
 
     const advanceAuto = () => {
@@ -1254,6 +1255,7 @@ function handleCarousel(container: HTMLElement): () => void {
         pauseBtn.setAttribute('aria-label', 'Play carousel')
         pauseBtn.setAttribute('aria-pressed', 'false')
         pauseBtn.textContent = 'Play'
+        updateControlButtons()
       }
     }
 
@@ -1273,21 +1275,9 @@ function handleCarousel(container: HTMLElement): () => void {
       else startAutoplay()
     }
 
-    const onPrev = () => {
-      if (pauseBtn) {
-        goToSlide((currentIndex - 1 + totalSlides) % totalSlides)
-      } else {
-        goToSlide(currentIndex - 1)
-      }
-    }
+    const onPrev = () => goToSlide(currentIndex - 1)
 
-    const onNext = () => {
-      if (pauseBtn) {
-        goToSlide((currentIndex + 1) % totalSlides)
-      } else {
-        goToSlide(currentIndex + 1)
-      }
-    }
+    const onNext = () => goToSlide(currentIndex + 1)
 
     const onFocusIn = (e: FocusEvent) => {
       if (!pauseBtn) return
@@ -1327,6 +1317,8 @@ function handleCarousel(container: HTMLElement): () => void {
       carouselRoot.removeEventListener('focusin', onFocusIn as EventListener)
       carouselRoot.removeEventListener('mouseenter', onMouseEnter)
       if (pauseBtn) pauseBtn.removeEventListener('click', togglePause)
+      prev.disabled = false
+      next.disabled = false
       clearIntervalSafe()
     })
   })

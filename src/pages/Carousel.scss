@@ -61,6 +61,18 @@
       border-color: $twilight-violet;
       color: $twilight-violet;
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      border-color: $fog-silver;
+      color: $ink-deep;
+
+      &:hover {
+        border-color: $fog-silver;
+        color: $ink-deep;
+      }
+    }
   }
 
   .carousel-pause {

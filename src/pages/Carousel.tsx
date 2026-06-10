@@ -40,7 +40,7 @@ const staticPreviewHtml = `<p class="preview-hint text-small">
       </div>
     </div>
     <div class="carousel-controls">
-      <button type="button" class="carousel-prev" aria-label="Previous slide, currently on slide 1 of 3">
+      <button type="button" class="carousel-prev" aria-label="Previous slide, currently on slide 1 of 3" disabled>
         Previous
       </button>
       <button type="button" class="carousel-next" aria-label="Next slide">Next</button>
@@ -93,7 +93,7 @@ const autoPreviewHtml = `<p class="preview-hint text-small">
       </div>
     </div>
     <div class="carousel-controls">
-      <button type="button" class="carousel-prev" aria-label="Previous slide, currently on slide 1 of 3">
+      <button type="button" class="carousel-prev" aria-label="Previous slide, currently on slide 1 of 3" disabled>
         Previous
       </button>
       <button type="button" class="carousel-next" aria-label="Next slide">Next</button>
